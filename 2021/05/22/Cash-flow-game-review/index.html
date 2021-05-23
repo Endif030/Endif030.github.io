@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>现金流游戏复盘-RoyLuo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+
+
+<meta name="keywords" content="复盘,游戏,">
+<meta name="description" content="">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 5.4.0"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/logo.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										首页
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										归档
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										分类
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										标签
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										关于
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>RoyLuo</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">首页</a>
+        </li>
+        
+        <li>
+            <a href="/archives">归档</a>
+        </li>
+        
+        <li>
+            <a href="/categories">分类</a>
+        </li>
+        
+        <li>
+            <a href="/tags">标签</a>
+        </li>
+        
+        <li>
+            <a href="/about">关于</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/qiaobug">
+            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg bg-content-img">
+    <div class="bg-content">
+        <ul class="tag">
+            
+            
+            <li><a href="/tags/复盘">复盘</a></li>
+            
+            <li><a href="/tags/游戏">游戏</a></li>
+            
+            
+        </ul>
+        <h1>现金流游戏复盘</h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
+                    <path
+                        d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
+                        p-id="2902" fill="#ffffff"></path>
+                </svg>
+                
+                <span> <a href="">RoyLuo</a></span>
+                <p>2021-05-22</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <p>第一次参加现金流游戏，以前通过 <a target="_blank" rel="noopener" href="https://weibo.com/fanmisuo">@范米索</a>、@胭脂王 了解过这个活动，自己也找 @海程 算过一次财务报表，意识到自己财商方面的知识有所欠缺，而真正上手玩一次游戏后，发现自己还是有比较多盲区的，亲身参与的收获远比听说、看过的道理更真实，这是我一直崇尚的「体感反馈」，把自己扔到环境中去感受自己的反应和收获。</p>
+<p>因此，如果你没有玩过这个游戏，同时有打算去玩一次的话，请不要往下翻看文章，可以先收藏，等自己玩过一遍后再来看我写的东西，这样你会更有收获。</p>
+<p>因为，现金流游戏的模型存在一些 “通关秘籍”，类似于 Konami 红白机的 “⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️🅱️🅰️”，这些秘籍能让你提高赢得游戏的可能性，但这对你并没有帮助，赢得游戏不是关键，关键是借游戏赢得人生。</p>
+<p>我很信奉人在面临真实场景时获得的「体感反馈」，因为只有自己亲自踩过的坑才知道疼，相比于你在现实生活中的钱财损失，现金流游戏是我目前已知体验钱财运作的最小成本的工具，最多就是浪费几个小时的时间和几十块报名费，远比你在现实生活中财务操作不当而导致金钱亏损，甚至财务破产要好得多。</p>
+<p>并且，在这个游戏里你能观察到自己的决策质量和思维局限性，也能从其他人的合作态度中看出印证出现实生活的尔虞我诈，信任与怀疑两个极端态度都无法玩好这个游戏，场上的玩家不同，选择的游戏策略也不同，「单打独斗」和「合作共赢」可以在同一场游戏中交替出现，还能玩一些游戏外的 “骚操作”……</p>
+<p>总之，我强烈建议每个没玩过游戏的人亲自去报名参加一次，相信我，你会有很多收获的。</p>
+<p>铺垫到此结束，以下正式开始游戏复盘。</p>
+<p>——————————————</p>
+<figure class="highlight tap"><table><tr><td class="code"><pre><code class="hljs tap">游戏背景<br>游玩人数：5 人<br>我的角色：卡车司机（低收入）<br>其他角色：秘书（低）、工程师（中）、警官（中）、医生（高）<br><br>规则：<br><span class="hljs-number"> 1 </span>不能评论其他玩家的操作<br><span class="hljs-number"> 2 </span>非交易者不能参与机会交易游说<br><span class="hljs-number"> 3 </span>不能民间借贷<br></code></pre></td></tr></table></figure>
+
+<h1 id="了解其他在场的玩家"><a href="#了解其他在场的玩家" class="headerlink" title="了解其他在场的玩家"></a>了解其他在场的玩家</h1><p>因为是第一次玩现金流，我在游戏前会有意识的不去看其他人的游戏复盘文章，因此很多概念是边玩边上手的，这也是为什么我建议大家自己玩过一遍再看复盘的原因，亲身体会的经验真的不一样。</p>
+<p>游戏开场，银行家在介绍完游戏规则后，我就给自己立下先抽小生意卡，等自己有一些资本以后再去抽大买卖卡的策略，后来在复盘时发现，这是个比较正确的策略。</p>
+<p>现场游戏角色有 4 名是中低收入的，只有 1 名是高收入玩家，前期全场的现金储备都不多，大买卖卡的投资本金最低也要 6k，前期抽取只是在白白浪费机会。</p>
+<p>并且这场游戏唯一一个高收入玩家的投资策略是偏 “单打独斗” 型的，宁愿自己去抽卡也不愿意与别人合作，在其他玩家抽到高收益率的大买卖卡时也只愿意一次性买断，因此没法通过抽到高回报的「大生意卡」来共享机会赚钱，导致其他人也只能通过 “单打独斗” 来开展游戏。</p>
+<p>这在现实生活中也能体现，有人乐于合作共赢，有人乐于单打独斗，遇到不同的人要用不同的策略玩游戏，并且最好能找到和你志同道合的人一起玩。</p>
+<p>这会让我想到生财有术，生财圈子里的人都比较信奉合作共赢，因为利他才是最好的利己。</p>
+<h1 id="学会重仓"><a href="#学会重仓" class="headerlink" title="学会重仓"></a>学会重仓</h1><p>在一开始的几轮里，我有幸抽到了一张「股票卡」，可以用 1 元价格购入正常价格范围在 5-30 元的一支股票，当时决定要买，但当时考虑到：</p>
+<ol>
+<li>不清楚游戏里的股票是怎么卖的</li>
+<li>自己手里只有 1600 元</li>
+</ol>
+<p>于是自己一拍脑袋，只用 300 元买了 300 股，就想着自己有参与就好。</p>
+<p>后来方糖抽到了一张股票交易的「小生意卡」，股票代码刚好是我用 1 元购买 300 股的那支，股票价格升到了 10 元，我借此机会把手上的 300 股全部出手，换取到 3000 元的现金，这时我意识到自己在一开始的决策失误。</p>
+<p><img src="/images/Cash-flow-game-review/2.png" alt="图片"></p>
+<p>我当时看到这支正常价格在 5-30 元的股票只需要 1 元，马上意识到这是绝佳的机会，但真正到自己掏钱买的时候却只买了 300 元，在复盘时仔细算过收益率，1 元股票最差情况是无法卖出，最多就是亏损本金，而一旦有收益，最差情况也有 400% 的收益，均值收益可以去到 1650%，这个买卖是标准的 “下限低上限高”。</p>
+<p>而按当时的局面，多数玩家都在抽「小生意卡」，而小生意卡里有大量股票交易信息（但这一点在我刚开始玩游戏时是不知道的，一个信息差），我有很大概率可以通过 1 元股票将存款倍增，而自己因为没算清楚帐所以只投入 300，因此只赚到不痛不痒的 3000，后来在复盘时认真想过，如果以后还有这种机会，我会选择用 70-80% 现金购入股票，在保证现金流健康的前提下尽可能搏股票盈利的可能性。</p>
+<p>其实这个操作和我前段时间在币圈的一个操作有点像，也是 “下限低上限高” 的买卖，也同样因为不熟悉规则而导致收益减少。</p>
+<p>4 月 13 号晚上，DogeCoin 价格在 0.09$ 左右，我睡前把之前买 Alice 亏剩下几百块开了 20x 合约，买好就躺平去睡了，心里想着这钱没了就没了，熟悉币圈的小伙伴应该知道后来发生了啥，我早上爬起来看收益是 400%……</p>
+<p>4 月 14 号全天，我将钱包里的钱多次买入 50x 合约，但每笔买开的仓位都不高（50%左右），在提前设置好的止盈止损价位玩，最后在下午以本金的 20 倍收益出场。</p>
+<p><img src="/images/Cash-flow-game-review/3.png" alt="图片"></p>
+<p>这故事还有后续，提现出场时我在账户里留了一点 U，想着后续还能碰碰运气，随之又开了几次 50x 合约，也得到挺客观的收益，然而一时贪心没跑，一次爆仓全没了……</p>
+<p>现金流游戏里的盈利还是比较确定的，1 元股有很大概率能获得倍数收益，就算损失也只是失去了本金，对于前期自己没钱购入高价值资产时，是个极佳的以小搏大机会。</p>
+<p>而在现实生活中， Dogecoin 对我来说也是这样投资标的，损失厌恶让我不太敢去 All in 开仓，收益倍率最后算下来还算不错，但因为投入本金太小，最终收益不足以改变现状，其实理性分析最差的情况也只是失去几百本金，而如果后来几轮 50x 的开仓都是 All in，最终收益可能会翻几倍甚至十几倍，在这件事上我学到重仓的重要性。</p>
+<p>这里我也想到另外一件事，币圈这种没有基本面的投资标的，我是不太敢下大仓位押注的，那如果换做是其他标的，我是否有信心用高仓位去押注呢？我需要通过什么信息来建立押注信心呢？这些问题的答案还有待探寻。</p>
+<h1 id="购入核心资产的意识"><a href="#购入核心资产的意识" class="headerlink" title="购入核心资产的意识"></a>购入核心资产的意识</h1><p>前几轮游戏，医生玩家（高收入角色）一直抽的是「大买卖卡」，刚好抽到一个 2 房 1 室的房屋购买权，他通过找银行借贷后买入，那个房屋的收益应该是 40% 左右，购入贷款额度对现金流的影响不大，在我看来是个很赚的买卖，于是想着自己也要抽到买房机会来购入房产。</p>
+<p>游戏里的房产交易是比较简单的，只需要你支付首付即可，房屋还会带来现金流收入，可以用于抵消银行贷款，我后来的一笔买房交易就是房屋带来的每月现金流 +200，银行贷款利息每月支出 -200，算下来其实是白嫖了一套房。</p>
+<p>医生玩家在后来的一次市场变动中出售了自己的 2 室 1 厅房屋，顺利积攒下不少的现金，给后续的买入资产提供了不少可能性，也因此在后来的投资交易中买入多笔核心资产，获得了不少变现。</p>
+<p>这里还有个很有趣的插曲，有个玩家说自己以前玩游戏都靠房子发财，这一盘决定不买房子了！然后等自己抽到了房屋交易卡后瞬间真香，立马向银行家借贷买入房产……绝了.jpg</p>
+<p>回到现实生活中，真实的房屋交易难度自然要比游戏里复杂得多，也不可能出现白嫖房子的可能性，可预见房子将会很大程度影响现金流，进而改变生活状态，但购买核心资产的投资逻辑是不变的，一线城市房子依然是很好的投资标的，我自己是一定会买入的，只是时间问题。</p>
+<h1 id="不熟悉规则所吃的亏"><a href="#不熟悉规则所吃的亏" class="headerlink" title="不熟悉规则所吃的亏"></a>不熟悉规则所吃的亏</h1><p>游戏进行到这里出了个小岔子，一直抽「大买卖卡」的医生玩家抽到了一张房屋的购买权，医生自己都无法通过贷款的方式买入，只能放弃。</p>
+<p>这时方糖突然提出要购入这个机会卡，然后在谈判阶段被医生敲诈掉手上所有的现金，在购入后发现原来自己无法通过向银行借贷拿到房产首付，这场游戏也不允许民间借贷，其实就算允许当时的盘面也没有那么多钱可以借，因此花重金买入的机会卡变成了一次教训，吃了个大亏。</p>
+<p>这部分的内容方糖在自己的复盘文里会详细写，欢迎大家去她的文章里看 @方糖呐。</p>
+<h1 id="建立风险防范的意识"><a href="#建立风险防范的意识" class="headerlink" title="建立风险防范的意识"></a>建立风险防范的意识</h1><p>在初期游戏中，工程师玩家不幸遭遇停职，导致有 2 轮无法参与游戏，对他后来的财富积累造成很大影响。</p>
+<p>在游戏里停职意味着连最基础的工资收入都没有，这种命数对财富积累的影响太大了，因为不参与游戏就和环境脱节了，还好这位是个老玩家，懂得如何快速积累财富，通过后续几轮的操作顺利翻身，如果是新玩家可能就因此一蹶不振了。</p>
+<p>这会让我想到自己在 2020 年的离职经历，当时我有一定本金可以保证生活，但无收入的状态就是在坐吃山空，等生活踏入正轨后储蓄也基本上被消耗殆尽了。</p>
+<p>这件事会让我意识到不能只靠死工资过活，工作变动不是自己可以预防的，但增加收入源却是自己可控的，尽可能的让自己拥有在最差情况下还能获得收入的方式，副业、长期投资、套利都可以，绝不能干等着别人赏饭吃。</p>
+<p>今年 418 以最低价格进入了生财有术，到目前为止刷了一些精华帖，想做的淘宝蓝海只跑过第一轮，本来打算五一假期期间开始跑第二轮，可因为各种事拖延就懒下来了，在此借这篇文章警醒自己，要建立起未雨绸缪的习惯。</p>
+<p>我妈妈经常说的一句话叫 “晴带雨伞，饱带干粮”，人无远虑必有近忧，与其在黑天鹅砸脸上后再匆忙应对，不如在较为稳定的时候开始考虑未来，让自己有更强的风险防范能力。</p>
+<h1 id="财富积累，不进则退"><a href="#财富积累，不进则退" class="headerlink" title="财富积累，不进则退"></a>财富积累，不进则退</h1><p>有位玩家踩中了好几轮「银行结算日」格子，在游戏里这个格子只能获得每月工资收入，却无法通过抽取机会卡进行投资交易，财富积累的速度非常慢。</p>
+<p>这在游戏里这只能算是运气不好，可现实生活中却有人主动选择了这种生活，每个月安分守己拿点工资，不会主动去了解和尝试市场机会，财富积累速度可能还跑不过通胀，身边的玩家都在通过投资理财快速积累财富，而自己还是在原有舒适区里待着，并用 “凡是有风险” 的叙事充当借口。</p>
+<p>像是银行家在游戏开始时对老鼠圈的形容，一只小老鼠不断地在笼子里原地跑，永无出头之日。</p>
+<h1 id="贴合实际的抽卡巧合"><a href="#贴合实际的抽卡巧合" class="headerlink" title="贴合实际的抽卡巧合"></a>贴合实际的抽卡巧合</h1><p>巧合的是，我在这场游戏中抽到了好几次额外支出，都是买包包、买网球拍之类的购物支出，这尼玛也太符合我的实际情况了……</p>
+<p>刚工作这几年自己的财务状态就是刚赚到点钱就花掉，知道要存钱但总是想着收入低存不下来，有大额收入又想着花点不过分……因此没攒下什么钱，导致像 Dogecoin 这种机会来临时缺乏本金押注，收益无法改变什么。</p>
+<p>我在近半年会开始重视这个问题，并且之前在向 @海程 咨询时也专门问到了储蓄的问题，在分析过自己未来 30 年的财务报表后，更加明确了自己现在就要开始攒钱。</p>
+<p>在我看来这个市场上并不缺少好机会，而是缺少信息源和上桌资格，而我已经是可获取信息源的少数人了，如果因为无法上桌而错失良机，那就只能怪自己没远见，而我并不想成为这种人。</p>
+<h1 id="Hack-人生的游戏玩法"><a href="#Hack-人生的游戏玩法" class="headerlink" title="Hack 人生的游戏玩法"></a>Hack 人生的游戏玩法</h1><p>这里插个题外话，我在向老中医海程咨询的过程中，他出于对我的信任和认可，在咨询过后向我传授了一些搞钱的神奇操作，是适合大多数人的快速搞钱之道，我用个例子来便于理解。</p>
+<p>我们先套用一个最简单的投资收益公式：</p>
+<p><code>本金 *（1+收益率%）= 收益</code></p>
+<p>在收益率波动不大的情况下，拉动收益的方式就只有提高本金：</p>
+<p><code>十倍本金 *（1+收益率%）= 十倍收益</code></p>
+<p>但天下没有白吃的午餐，拉高本金自然是有代价的，因此这个公式最终为：</p>
+<p><code>十倍本金 *（1+收益率%）- 代价 = 最终收益</code></p>
+<p>算下来，你快速拥有了十倍的收益，同时需要付出一些代价，在我看来这是个开挂的玩法，是把自己未来若干年后的收入放到现在来赚取收益。</p>
+<p>本金倍率和代价金额度是有具体数额的，但不便在文章里公开，这种机会一定只属于少数人，有兴趣了解的朋友可以通过公众号联系上我，或直接找海程进行付费咨询。</p>
+<h1 id="人生课题的意外支出"><a href="#人生课题的意外支出" class="headerlink" title="人生课题的意外支出"></a>人生课题的意外支出</h1><p>本场游戏没有人生孩子，但是有人抽到过一张额外支出卡，如果有孩子就要支出 2000 元为孩子补牙。</p>
+<p>其实在开始游戏时，我发现自己的角色生孩子的成本只是每个月增加140元支出，还觉得这个游戏挺简单的，生孩子的成本这么低，但没想到游戏还设计了伴随孩子的额外支出项。</p>
+<p>但在现实生活中也是这样的，成家、立业、繁衍后代这些人生课题一定会有很多的预期外的支出费用，在没自己亲身经历过之前，其他人的经验也只是仅供参考，毕竟每个人的所面临的局面都不一样。</p>
+<p>我的同龄人有些已经开始成家生孩子了，在我看来其实还挺勇敢的，我和方糖开玩笑时，会说一个孩子 = 300w，是指养育到 18 岁的成本。</p>
+<p>这个数并没有经过验算，但在我看来可能只会多不会少，因为我信奉人是环境的产物，如果无法给孩子一个我理想中的成长环境，在我看来这是对一个生命的不负责。</p>
+<p>有太多人把人生课题当作理想生活的解药，人生苦恼生个孩子就好了，事业不顺成个家就有人一起分担了，以为踏入下一个人生阶段就能解决当下的问题，全然不知人生课题背后的成本和代价，满怀期待踏入下一个人生阶段结果发现原先的问题没被解决，而新的问题已经接踵而至，这时如果是两个不成熟个体来一起面对……可预见的内忧外患。</p>
+<p>没准备好前不要去打 Boss，也不要去调戏 Boss。</p>
+<p>——————</p>
+<p>好啦，以上就是我玩这次现金流游戏的复盘，还有很多笔记内容是没有写出来的，主要原因是感觉自己对那些内容的体会还不深，等哪天真正理解以后再专门写吧。</p>
+<p>我会发现自己在很多事物的「知道」和「做到」两种状态间有个过渡周期，而多接触新事物能提高融会贯通的可能性，我经常会在一些机缘巧合下想明白脑海里已知的几个信息之间的联系，会被这种突如其来的想明白事情而 “爽到”，这可能是发现隐藏宝藏后世界给我的多巴胺奖励吧。</p>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () { $('#article').click(function (e) { if (e.target.tagName == "IMG") { if ($('#nonediv').length == 0) { let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`; let MDiv = "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>"; $('#article').append(MDiv); $('#article').append(MImg); $("#nonediv").fadeIn("slow"); $("#noneimg img").fadeIn("slow") } } else { if ($('#nonediv').length !== 0) { $("#noneimg ").fadeOut("slow"); $("#nonediv").fadeOut("slow"); setTimeout(function () { $('#nonediv').remove(); $('#noneimg').remove() }, 500) } } }); $('.article-content').addClass('content-move') });
+</script>
+<div class="Last-Next">
+    
+
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By RoyLuo. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/qiaobug">
+			<img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+		</a>
+		
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>

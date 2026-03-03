@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学习进度 - 攀岩技术学习工坊</title>
+  <link rel="stylesheet" href="css/minimal.css">
+  <style>
+    .progress-container { max-width: 800px; margin: 0 auto; padding: 48px 0; }
+    .progress-overview { text-align: center; padding: 48px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 32px; }
+    .progress-circle { width: 160px; height: 160px; margin: 0 auto 24px; position: relative; }
+    .progress-circle svg { transform: rotate(-90deg); }
+    .progress-circle-bg { fill: none; stroke: #F3F4F6; stroke-width: 8; }
+    .progress-circle-fill { fill: none; stroke: #FBBF24; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 0.5s; }
+    .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 36px; font-weight: 700; }
+    .progress-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+    .progress-stat { text-align: center; }
+    .progress-stat-value { font-size: 32px; font-weight: 700; color: #F59E0B; }
+    .progress-stat-label { font-size: 14px; color: #6B7280; margin-top: 4px; }
+    .learned-list { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .learned-list h2 { margin-bottom: 24px; }
+    .learned-item { display: flex; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid #F3F4F6; }
+    .learned-item:last-child { border-bottom: none; }
+    .learned-item-info h4 { font-weight: 600; margin-bottom: 4px; }
+    .learned-item-info p { font-size: 14px; color: #6B7280; }
+    .learned-item-date { font-size: 12px; color: #9CA3AF; }
+    .empty-state { text-align: center; padding: 48px; color: #9CA3AF; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">🧗 攀岩技术学习工坊</a>
+        <div class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="learn.html">学习</a>
+          <a href="flashcard.html">闪卡</a>
+          <a href="roots.html">索引</a>
+          <a href="progress.html" class="active">进度</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="progress-container">
+      <div class="progress-overview">
+        <h1>学习进度</h1>
+        
+        <div class="progress-circle">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <circle class="progress-circle-bg" cx="80" cy="80" r="72"></circle>
+            <circle class="progress-circle-fill" id="progressCircle" cx="80" cy="80" r="72" stroke-dasharray="452" stroke-dashoffset="452"></circle>
+          </svg>
+          <div class="progress-text" id="progressPercent">0%</div>
+        </div>
+        
+        <div class="progress-stats">
+          <div class="progress-stat">
+            <div class="progress-stat-value" id="statTotal">30</div>
+            <div class="progress-stat-label">总技术数</div>
+          </div>
+          <div class="progress-stat">
+            <div class="progress-stat-value" id="statLearned">0</div>
+            <div class="progress-stat-label">已掌握</div>
+          </div>
+          <div class="progress-stat">
+            <div class="progress-stat-value" id="statRemaining">30</div>
+            <div class="progress-stat-label">待学习</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 32px;">
+          <button class="btn btn-secondary" onclick="Storage.clear(); location.reload();">重置进度</button>
+        </div>
+      </div>
+      
+      <div class="learned-list">
+        <h2>已掌握技术</h2>
+        <div id="learnedList">
+          <div class="empty-state">还没有掌握任何技术，开始学习吧！</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/wordData.js"></script>
+  <script src="js/storage.js"></script>
+  <script>
+    function updateProgress() {
+      const stats = Storage.getStats();
+      const learned = Storage.getLearnedList();
+      
+      // 更新统计数据
+      document.getElementById('statTotal').textContent = stats.total;
+      document.getElementById('statLearned').textContent = stats.learned;
+      document.getElementById('statRemaining').textContent = stats.total - stats.learned;
+      document.getElementById('progressPercent').textContent = stats.percentage + '%';
+      
+      // 更新圆环
+      const circumference = 2 * Math.PI * 72;
+      const offset = circumference - (stats.percentage / 100) * circumference;
+      document.getElementById('progressCircle').style.strokeDashoffset = offset;
+      
+      // 更新已掌握列表
+      const listEl = document.getElementById('learnedList');
+      if (learned.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">还没有掌握任何技术，开始学习吧！</div>';
+      } else {
+        listEl.innerHTML = learned.map(item => {
+          const root = WordRoots.find(r => r.id === item.id);
+          const date = new Date(item.learnedAt).toLocaleDateString('zh-CN');
+          return `
+            <div class="learned-item">
+              <div class="learned-item-info">
+                <h4>${root ? root.root : '技术 #' + item.id}</h4>
+                <p>${root ? root.meaning : ''}</p>
+              </div>
+              <div class="learned-item-date">掌握于 ${date}</div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', updateProgress);
+  </script>
+</body>
+</html>

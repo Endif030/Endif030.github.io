@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技术索引 - 攀岩技术学习工坊</title>
+  <link rel="stylesheet" href="css/minimal.css">
+  <style>
+    .index-header { padding: 48px 0 32px; text-align: center; }
+    .search-box { max-width: 500px; margin: 0 auto 32px; }
+    .search-box input { width: 100%; padding: 16px 24px; font-size: 16px; border: 2px solid #E5E7EB; border-radius: 12px; outline: none; transition: border-color 0.2s; }
+    .search-box input:focus { border-color: #FBBF24; }
+    .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; padding-bottom: 64px; }
+    .item-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: all 0.2s; cursor: pointer; }
+    .item-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .item-card.learned { border-left: 4px solid #10B981; }
+    .item-number { font-size: 12px; color: #F59E0B; font-weight: 600; margin-bottom: 8px; }
+    .item-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .item-meaning { font-size: 14px; color: #6B7280; line-height: 1.5; }
+    .item-category { display: inline-block; font-size: 12px; color: #9CA3AF; background: #F3F4F6; padding: 4px 8px; border-radius: 4px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">🧗 攀岩技术学习工坊</a>
+        <div class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="learn.html">学习</a>
+          <a href="flashcard.html">闪卡</a>
+          <a href="roots.html" class="active">索引</a>
+          <a href="progress.html">进度</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="index-header">
+      <h1 class="section-title">技术索引</h1>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索技术名称..." oninput="filterItems()">
+      </div>
+    </div>
+    
+    <div class="items-grid" id="itemsGrid"></div>
+  </main>
+
+  <script src="js/wordData.js"></script>
+  <script src="js/storage.js"></script>
+  <script>
+    function renderItems(items) {
+      const grid = document.getElementById('itemsGrid');
+      const learned = Storage.getAll();
+      
+      grid.innerHTML = items.map(item => {
+        const isLearned = learned[item.id]?.learned;
+        return `
+          <div class="item-card ${isLearned ? 'learned' : ''}" onclick="location.href='learn.html?id=${item.id}'">
+            <div class="item-number">#${item.id}</div>
+            <div class="item-name">${item.root}</div>
+            <div class="item-meaning">${item.meaning}</div>
+            <span class="item-category">${item.origin}</span>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function filterItems() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = WordRoots.filter(item => 
+        item.root.toLowerCase().includes(query) ||
+        item.meaning.toLowerCase().includes(query)
+      );
+      renderItems(filtered);
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => renderItems(WordRoots));
+  </script>
+</body>
+</html>

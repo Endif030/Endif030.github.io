@@ -1,0 +1,21 @@
+{
+  "name": "攀岩技术学习工坊",
+  "short_name": "攀岩学习",
+  "description": "30个核心技术，从入门到进阶，系统掌握攀岩",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FBBF24",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

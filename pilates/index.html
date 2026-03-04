@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>普拉提学习工坊</title>
+  <meta name="description" content="普拉提是一种强调核心控制、呼吸配合和身心连接的运动方式。通过系统学习30个核心技术，帮助你改善姿态、强化核心。">
+  <meta name="keywords" content="普拉提,学习,技术,核心训练,姿态改善">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧘</text></svg>">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#FBBF24">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/minimal.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">🧘 普拉提学习工坊</a>
+        <div class="nav-links">
+          <a href="index.html" class="active">首页</a>
+          <a href="learn.html">学习</a>
+          <a href="flashcard.html">闪卡</a>
+          <a href="roots.html">索引</a>
+          <a href="progress.html">进度</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="title-line">30个核心技术</span>
+              <span class="title-line">从基础到进阶</span>
+              <span class="title-line highlight">掌握普拉提</span>
+            </h1>
+            <p class="hero-subtitle">从六大原则到经典动作，系统学习普拉提的精髓</p>
+            <div class="hero-cta">
+              <a href="learn.html" class="btn btn-primary">开始学习 →</a>
+              <a href="flashcard.html" class="btn btn-secondary">闪卡复习</a>
+            </div>
+          </div>
+          <div class="hero-animation" id="heroAnimation"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-value">30</span>
+            <span class="stat-label">核心技术</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">6</span>
+            <span class="stat-label">基础原则</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">全身</span>
+            <span class="stat-label">整合训练</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">学习模式</h2>
+        <div class="features-grid">
+          <a href="flashcard.html" class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>闪卡复习</h3>
+            <p>快速记忆核心概念，支持键盘快捷键操作</p>
+          </a>
+          <a href="learn.html" class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>渐进学习</h3>
+            <p>系统学习每个技术点的详细说明和应用</p>
+          </a>
+          <a href="roots.html" class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>技术索引</h3>
+            <p>快速查找和搜索需要复习的技术</p>
+          </a>
+          <a href="progress.html" class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>进度追踪</h3>
+            <p>记录学习进度，查看已掌握的技术</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="topics-preview">
+      <div class="container">
+        <h2 class="section-title">核心内容</h2>
+        <div class="topics-grid">
+          <div class="topic-tag">核心控制</div>
+          <div class="topic-tag">呼吸</div>
+          <div class="topic-tag">专注</div>
+          <div class="topic-tag">中心</div>
+          <div class="topic-tag">控制</div>
+          <div class="topic-tag">精准</div>
+          <div class="topic-tag">流畅</div>
+          <div class="topic-tag">百次呼吸</div>
+          <div class="topic-tag">卷腹</div>
+          <div class="topic-tag">骨盆卷动</div>
+          <div class="topic-tag">天鹅式</div>
+          <div class="topic-tag">平板支撑</div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="roots.html" class="btn btn-secondary">查看全部30个技术 →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-tagline">身心合一，优雅运动</div>
+        <p class="footer-description">普拉提是一种强调核心控制、呼吸配合和身心连接的运动方式。通过系统学习30个核心技术，从六大原则到经典动作，帮助你改善姿态、强化核心、提升身体觉察能力，享受优雅而有力的运动体验。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/wordData.js"></script>
+  <script src="js/siteConfig.js"></script>
+  <script src="js/storage.js"></script>
+  <script>
+    function initHeroAnimation() {
+      const container = document.getElementById('heroAnimation');
+      if (!container || typeof WordRoots === 'undefined') return;
+      
+      const items = WordRoots.slice(0, 5);
+      let current = 0;
+      
+      function showItem() {
+        const item = items[current % items.length];
+        container.innerHTML = `
+          <div class="hero-card">
+            <div class="hero-card-number">${item.id}</div>
+            <div class="hero-card-title">${item.root}</div>
+            <div class="hero-card-meaning">${item.meaning}</div>
+          </div>
+        `;
+        current++;
+      }
+      
+      showItem();
+      setInterval(showItem, 3000);
+    }
+    
+    document.addEventListener('DOMContentLoaded', initHeroAnimation);
+  </script>
+</body>
+</html>

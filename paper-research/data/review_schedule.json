@@ -1,0 +1,13 @@
+{
+  "schedule": {
+    "2026-03-10": [
+      {
+        "card_id": "fc_298efb68",
+        "paper_id": "test_arxiv_2503.001",
+        "discipline": "ai",
+        "stage": 0,
+        "question": "什么是Transformer架构的核心机制？"
+      }
+    ]
+  }
+}

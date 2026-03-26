@@ -1,0 +1,4 @@
+*/5 * * * * flock -xn /tmp/stargate.lock -c '/usr/local/qcloud/stargate/admin/start.sh > /dev/null 2>&1 &'
+0 0 * * * export NVM_DIR=\"/root/.nvm\" && [ -s \"\/root/.nvm/nvm.sh\" ] && \. \"\/root/.nvm/nvm.sh\" && cd /root/.openclaw/workspace/skills/investment-daily-report && TAVILY_API_KEY=\${TAVILY_API_KEY} bash scripts/generate-report.sh >> /tmp/investment-report-cron.log 2>&1
+0 0 * * * export TZ='Asia/Shanghai' && ~/.openclaw/workspace/skills/investment-daily-report/scripts/daily_briefing.sh >> /tmp/cron_daily_briefing.log 2>&1
+5 1 * * * /tmp/simple_reminder.sh

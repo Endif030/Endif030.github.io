@@ -1,0 +1,64 @@
+#!/usr/bin/expect -f
+# 自动配置OpenClaw服务器
+
+set timeout 120
+set host "101.33.249.81"
+set user "root"
+set password "H7cevo3@openclaw"
+
+spawn ssh -o StrictHostKeyChecking=no $user@$host
+expect "password:"
+send "$password\r"
+
+expect "root@VM-0-17-ubuntu"
+puts "✅ SSH登录成功"
+
+# 更新系统
+puts "\n📦 更新系统包..."
+send "apt-get update -qq && apt-get upgrade -y -qq\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ 系统更新完成" }
+
+# 安装基础工具
+puts "\n🔧 安装基础工具..."
+send "apt-get install -y curl wget git build-essential software-properties-common gnupg lsb-release -qq\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ 基础工具安装完成" }
+
+# 安装Node.js 20
+puts "\n📥 安装Node.js 20..."
+send "curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs -qq\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ Node.js安装完成" }
+
+# 安装Python 3.11
+puts "\n🐍 安装Python 3.11..."
+send "apt-get install -y python3.11 python3.11-venv python3-pip python3.11-dev -qq\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ Python 3.11安装完成" }
+
+# 安装AKShare依赖
+puts "\n📊 安装AKShare依赖..."
+send "apt-get install -y libxml2-dev libxslt1-dev python3-dev -qq\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ AKShare依赖安装完成" }
+
+# 安装AKShare和Tushare
+puts "\n📦 安装AKShare和Tushare..."
+send "pip3 install --upgrade pip setuptools wheel -q && pip3 install akshare tushare pandas numpy -q\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ AKShare和Tushare安装完成" }
+
+# 安装OpenClaw CLI
+puts "\n🦞 安装OpenClaw..."
+send "npm install -g openclaw@latest\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ OpenClaw安装完成" }
+
+# 创建工作目录
+puts "\n📁 创建工作空间..."
+send "mkdir -p /root/.openclaw/workspace\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ 工作目录创建完成" }
+
+# 配置环境变量
+puts "\n⚙️ 配置环境变量..."
+send "echo 'export TAVILY_API_KEY=\"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\"' >> ~/.bashrc\r"
+expect -re "root@VM-0-17-ubuntu" { puts "✅ 环境变量配置完成" }
+
+# 完成
+puts "\n🎉 基础配置全部完成！"
+send "exit\r"
+expect eof

@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "20c8cacd-3802-4ca5-90c1-f6c0814963b3",
+      "name": "配置测试",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772464547900,
+      "updatedAtMs": 1772464621567,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T15:16:47.806Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请使用 message 工具发送：✅ Cron配置测试成功！自动批准已生效。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "state": {
+        "lastRunAtMs": 1772464607817,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 13750,
+        "lastError": "No delivery target resolved for channel \"feishu\". Set delivery.to.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "016191cf-984d-4a5b-a9ea-3dc2162c0827",
+      "name": "配置测试2",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772466161851,
+      "updatedAtMs": 1772466227744,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T15:43:41.778Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请使用 message 工具发送：✅ 测试消息2 - 带接收者参数"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_bbfc027431c61a8ba421c54c7bb0f5c4"
+      },
+      "state": {
+        "lastRunAtMs": 1772466221783,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 5961,
+        "lastError": "⚠️ ✉️ Message failed",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "23dba658-123d-4e42-8b3f-05363af50acd",
+      "name": "配置测试3",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772466263694,
+      "updatedAtMs": 1772466339278,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T15:45:23.616Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请使用 message 工具发送：✅ 测试消息3 - best-effort-deliver参数"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_bbfc027431c61a8ba421c54c7bb0f5c4",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1772466323620,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 15658,
+        "lastError": "⚠️ ✉️ Message failed",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "9ede76d2-b826-4eb8-8241-6cef268f3922",
+      "name": "方案3测试",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772466948946,
+      "updatedAtMs": 1772467026618,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T15:56:48.880Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请使用 message 工具发送一条消息到飞书频道，内容是：✅ 方案3测试成功！这是通过子代理直接调用message工具发送的消息。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772467008886,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 17732,
+        "lastError": "No delivery target resolved for channel \"feishu\". Set delivery.to.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "72876b29-fa00-4485-b027-d7acf9a8f147",
+      "name": "A股日报推送测试",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772467260942,
+      "updatedAtMs": 1772467886376,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T16:06:00.878Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请使用 message 工具发送A股日报：收集今日A股市场行情、主要指数表现、涨跌幅排名、成交量等关键数据，以简洁的格式发送给用户。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772467560883,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 325493,
+        "lastError": "No delivery target resolved for channel \"feishu\". Set delivery.to.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "d108e3bb-71c2-4f45-b0e0-9b9a81d01a35",
+      "name": "简单测试",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772468111564,
+      "updatedAtMs": 1772468184467,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T16:16:11.496Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "使用message工具发送：测试消息"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772468171501,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 12966,
+        "lastError": "No delivery target resolved for channel \"feishu\". Set delivery.to.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "78d68009-e456-42e9-9359-d81ba5a0156f",
+      "name": "无session参数测试",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772468332147,
+      "updatedAtMs": 1772468411930,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T16:19:52.079Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "使用message工具发送：无session参数测试"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772468392085,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 19845,
+        "lastError": "No delivery target resolved for channel \"feishu\". Set delivery.to.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "c32f23dc-9baa-4542-9faf-1726008b9fd1",
+      "name": "唤醒模式测试",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1772472273466,
+      "updatedAtMs": 1772472411338,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-02T17:26:33.399Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请使用 message 工具发送：唤醒模式测试成功！--wake now 参数生效。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "lastRunAtMs": 1772472393406,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 17932,
+        "lastError": "cron announce delivery failed",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    }
+  ]
+}

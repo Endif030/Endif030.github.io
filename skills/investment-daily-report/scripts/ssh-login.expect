@@ -1,0 +1,35 @@
+#!/usr/bin/expect -f
+# 自动SSH密码登录脚本
+
+set timeout 20
+set host "101.33.249.81"
+set user "root"
+set password "H7cevo3@openclaw"
+
+spawn ssh -o StrictHostKeyChecking=no $user@$host
+expect {
+    "password:" {
+        send "$password\r"
+        exp_continue
+    }
+    "Permission denied" {
+        puts "❌ 密码错误或认证失败"
+        exit 1
+    }
+    eof {
+        puts "❌ 连接失败"
+        exit 1
+    }
+    -re "$ " {
+        puts "✅ 登录成功！"
+        send "hostname && uptime && cat /etc/os-release | grep PRETTY\r"
+        expect -re "$ "
+        puts "\n=== 服务器信息 ==="
+        puts $expect_out(buffer)
+        send "exit\r"
+        exit 0
+    }
+}
+
+puts "❌ 连接超时"
+exit 1

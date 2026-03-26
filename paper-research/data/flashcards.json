@@ -1,0 +1,2878 @@
+{
+  "cards": [
+    {
+      "id": "fc_6a20d43d",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:24.005693",
+      "updated_at": "2026-03-10T11:45:24.005693",
+      "question": "什么是知识蒸馏（Knowledge Distillation）？",
+      "answer": "知识蒸馏是一种将大模型（教师）的知识迁移到小模型（学生）的技术。在BEVLM中，LLM作为冻结的教师，通过VQA问答对提供标准答案，BEV编码器作为学生学习调整自己的参数，使输出接近教师答案。就像驾校教练指导学生，学生通过模仿教练的判断学会驾驶。",
+      "context": null,
+      "tags": [
+        "knowledge-distillation",
+        "bevlm",
+        "training"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "created",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-09",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_d50a3060",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:24.398089",
+      "updated_at": "2026-03-10T11:45:24.398089",
+      "question": "为什么传统BEV训练方式无法实现语义理解？",
+      "answer": "传统BEV训练依赖人工标注的3D框，只能学习几何信息（位置、大小），无法学习语义信息（物体含义、行为意图）。人工标注难以覆盖语义层面（如'这是一辆正在倒车的货车'）。BEVLM通过LLM教师的问答指导，让BEV学会语义理解。",
+      "context": null,
+      "tags": [
+        "bev",
+        "semantic-understanding",
+        "limitation"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "created",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-09",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_2469ae37",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:24.795739",
+      "updated_at": "2026-03-10T11:45:24.795739",
+      "question": "BEVLM如何解决长尾场景问题？",
+      "answer": "长尾场景指罕见但关键的情况（如暴雨中的模糊施工标志）。传统BEV只见过标注数据中的场景，没见过就懵。BEVLM让BEV从LLM学习'场景的本质特征'（如施工区的锥桶排布模式），而非记忆具体案例。因此遇到没见过的变体也能应对，实验显示安全性能提升29%。",
+      "context": null,
+      "tags": [
+        "long-tail",
+        "generalization",
+        "safety"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "created",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-09",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_41bde904",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:25.186002",
+      "updated_at": "2026-03-11T14:48:03.319907",
+      "question": "什么是VQA（Visual Question Answering），在BEVLM中起什么作用？",
+      "answer": "VQA是视觉问答，给定图片和问题，模型回答。在BEVLM中，VQA是LLM教师和BEV学生之间的桥梁：人类设计问题（如'前面的车为什么停了'），LLM提供标准答案（如'等红灯'），BEV学习让自己的回答接近LLM。这就像驾校教练通过问答教学员判断路况。",
+      "context": null,
+      "tags": [
+        "vqa",
+        "training-mechanism",
+        "llm"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "completed",
+            "ease": 5,
+            "completed_at": "2026-03-11T14:48:03.319883"
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-09",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 1,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 20,
+      "status": "active",
+      "total_reviews": 1,
+      "avg_ease": 5.0,
+      "require_read": true
+    },
+    {
+      "id": "fc_7b06e1e4",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:25.577861",
+      "updated_at": "2026-03-11T14:48:03.319919",
+      "question": "禅宗'手指明月'的比喻如何解释BEVLM的设计？",
+      "answer": "'手指明月，指非月'：手指是工具，目的是让学生看到月亮。在BEVLM中：LLM通过VQA'指'出场景含义（手指），BEV学习语义理解（见月）。LLM不需要给BEV'描述月亮'（规则定义），而是通过案例'指'出各种场景特征。训练完成后，LLM可以'放下手指'，BEV独立工作。",
+      "context": null,
+      "tags": [
+        "philosophy",
+        "analogy",
+        "case-based-learning"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "completed",
+            "ease": 5,
+            "completed_at": "2026-03-11T14:48:03.319910"
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-09",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 1,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 20,
+      "status": "active",
+      "total_reviews": 1,
+      "avg_ease": 5.0,
+      "require_read": true
+    },
+    {
+      "id": "fc_e6e88687",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:25.968652",
+      "updated_at": "2026-03-11T14:48:03.319930",
+      "question": "康德的'物自体'概念如何解释BEVLM的优势？",
+      "answer": "康德认为我们只能认识'现象'（被认知结构过滤的现实），而非'物自体'（完整现实）。传统AI通过'人类符号化'学习（物自体→人类观察→人类语言→AI），每一步都丢失信息。BEVLM直接学习传感器数据→行动的映射，跳过'人类符号化'，信息损失更少，更接近物自体。",
+      "context": null,
+      "tags": [
+        "philosophy",
+        "kant",
+        "information-loss"
+      ],
+      "difficulty": 5,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "completed",
+            "ease": 5,
+            "completed_at": "2026-03-11T14:48:03.319922"
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-09",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 1,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 20,
+      "status": "active",
+      "total_reviews": 1,
+      "avg_ease": 5.0,
+      "require_read": true
+    },
+    {
+      "id": "fc_d8b16e7f",
+      "paper_id": "2603.06576",
+      "discipline": "ai",
+      "created_at": "2026-03-10T11:45:26.368708",
+      "updated_at": "2026-03-23T12:53:30.319020",
+      "question": "格式塔心理学'整体大于部分'在BEVLM中如何体现？",
+      "answer": "格式塔认为整体不等于部分之和。传统BEV识别孤立物体（锥桶+卡车+标线），但无法理解'这是施工场景'。BEVLM让BEV学习'整体模式'：物体+关系+情境=场景理解。施工场景的本质不在于单个物体，而在于物体间的关系和整体情境。",
+      "context": null,
+      "tags": [
+        "gestalt",
+        "holistic-understanding",
+        "pattern-recognition"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-10",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-11",
+            "status": "completed",
+            "ease": 5,
+            "completed_at": "2026-03-23T12:53:30.318976"
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 1,
+        "next_review": "2026-03-26"
+      },
+      "mastery_level": 100,
+      "status": "active",
+      "total_reviews": 1,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_f572f8c6",
+      "paper_id": "2603.06573",
+      "discipline": "ai",
+      "created_at": "2026-03-17T09:19:59.998777",
+      "updated_at": "2026-03-23T12:53:30.319054",
+      "question": "Fly360的核心问题是什么？",
+      "answer": "传统无人机避障依赖有限视野（如正前方），无法应对侧飞、倒飞等需要全向感知的情况。当无人机侧向飞行时，侧向障碍物不在相机视野内，导致碰撞风险。",
+      "context": null,
+      "tags": [
+        "fly360",
+        "obstacle-avoidance",
+        "omnidirectional"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-17",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-23",
+            "status": "completed",
+            "ease": 5,
+            "completed_at": "2026-03-23T12:53:30.319027"
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 1,
+        "next_review": "2026-03-26"
+      },
+      "mastery_level": 100,
+      "status": "active",
+      "total_reviews": 1,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_f2b1a1a9",
+      "paper_id": "2603.06573",
+      "discipline": "ai",
+      "created_at": "2026-03-17T09:20:42.327577",
+      "updated_at": "2026-03-23T12:53:30.319085",
+      "question": "Fly360的两阶段流程是什么？",
+      "answer": "阶段1：全景图像到深度图。将6个相机（前后左右上下）的RGB图像拼接成全景图，通过深度估计网络生成360°深度图。阶段2：深度图到速度指令。基于深度图，通过强化学习策略网络输出三维速度指令（vx, vy, vz），控制无人机飞行。",
+      "context": null,
+      "tags": [
+        "fly360",
+        "pipeline",
+        "depth-estimation",
+        "rl"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-17",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-23",
+            "status": "completed",
+            "ease": 3,
+            "completed_at": "2026-03-23T12:53:30.319059"
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 1,
+        "next_review": "2026-03-25"
+      },
+      "mastery_level": 60,
+      "status": "active",
+      "total_reviews": 1,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_fly360_03",
+      "paper_id": "2603.06573",
+      "discipline": "ai",
+      "created_at": "2026-03-17T09:25:00.000000",
+      "updated_at": "2026-03-17T09:25:00.000000",
+      "question": "什么是'固定随机偏航训练策略'（Fixed Random Yaw Training）？",
+      "answer": "Fly360的创新训练方法：在训练时随机固定无人机的偏航角（yaw），强迫策略网络学习在不同朝向下都能避障。例如，训练时让无人机侧向飞行（偏航90°），即使相机朝向前方，实际运动方向也是侧向，从而训练出全向避障能力。",
+      "context": null,
+      "tags": [
+        "fly360",
+        "training-strategy",
+        "yaw",
+        "omnidirectional"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-17",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-01",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-16",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_fly360_04",
+      "paper_id": "2603.06573",
+      "discipline": "ai",
+      "created_at": "2026-03-17T09:26:00.000000",
+      "updated_at": "2026-03-17T09:26:00.000000",
+      "question": "Fly360相比传统前视避障有哪些性能提升？",
+      "answer": "实验结果显示：在侧向飞行任务中，Fly360成功率比前视基线提升67%；在倒飞任务中提升显著；在绕障任务中，由于能同时感知前后障碍物，碰撞率大幅降低。整体而言，360°感知使无人机可以在任意方向运动时都保持安全。",
+      "context": null,
+      "tags": [
+        "fly360",
+        "performance",
+        "comparison",
+        "baseline"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-17",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-01",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-16",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_fly360_05",
+      "paper_id": "2603.06573",
+      "discipline": "ai",
+      "created_at": "2026-03-17T09:27:00.000000",
+      "updated_at": "2026-03-17T09:27:00.000000",
+      "question": "Fly360的昆虫复眼类比是什么？",
+      "answer": "昆虫（如蜻蜓、苍蝇）有复眼，由数千个小眼组成，提供几乎360°的视野。Fly360的6相机配置类似复眼结构：多个小视野组合成全景视野。这种生物学启发的设计让无人机像昆虫一样拥有全向感知能力，能在复杂环境中灵活飞行。",
+      "context": null,
+      "tags": [
+        "fly360",
+        "biology",
+        "insect-eye",
+        "biomimicry"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-17",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-23",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-01",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-16",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-23"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_0c21170e",
+      "paper_id": "2603.06570",
+      "discipline": "ai",
+      "created_at": "2026-03-23T14:22:24.111792",
+      "updated_at": "2026-03-23T14:22:24.111797",
+      "question": "SUREON的核心洞察是什么？",
+      "answer": "\"外科医生不只是看到，而是理解(interpret)\"。专家不仅识别手术器械，还理解为什么选择它、评估风险、预测下一步。现有VLM缺乏这种手术场景的推理能力。",
+      "context": null,
+      "tags": [
+        "sureon",
+        "surgical-reasoning",
+        "vlm"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_19f9b62f",
+      "paper_id": "2603.06570",
+      "discipline": "ai",
+      "created_at": "2026-03-23T14:22:24.111846",
+      "updated_at": "2026-03-23T14:22:24.111848",
+      "question": "SUREON数据集评估哪两个核心能力？",
+      "answer": "1) 视觉理解能力 - 识别手术器械和场景；2) 推理能力 - 理解手术流程、评估风险、预测下一步。这是首个专门评估手术推理的benchmark。",
+      "context": null,
+      "tags": [
+        "sureon",
+        "benchmark",
+        "evaluation"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_71cc860b",
+      "paper_id": "2603.06570",
+      "discipline": "ai",
+      "created_at": "2026-03-23T14:22:24.111881",
+      "updated_at": "2026-03-23T14:22:24.111883",
+      "question": "为什么通用VLM在手术场景表现不佳？",
+      "answer": "通用VLM擅长识别\"是什么\"(what)，但手术需要理解\"为什么\"(why)和\"接下来做什么\"(what next)。手术场景需要专业领域知识、风险评估能力和流程理解能力。",
+      "context": null,
+      "tags": [
+        "sureon",
+        "vlm-limitation",
+        "domain-specific"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_6e94f551",
+      "paper_id": "2603.06570",
+      "discipline": "ai",
+      "created_at": "2026-03-23T14:22:24.111940",
+      "updated_at": "2026-03-23T14:22:24.111943",
+      "question": "SUREON的跨学科关联有哪些？",
+      "answer": "1) 人类学 - 专家知识的民族志研究；2) 认知科学 - 专家vs新手的认知差异；3) 教育学 - 手术技能的传授与学习。SUREON不仅是技术工具，也是理解专家思维的窗口。",
+      "context": null,
+      "tags": [
+        "sureon",
+        "interdisciplinary",
+        "expertise"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_77a6181c",
+      "paper_id": "2603.06570",
+      "discipline": "ai",
+      "created_at": "2026-03-23T14:22:24.111982",
+      "updated_at": "2026-03-23T14:22:24.111984",
+      "question": "手术AI的可解释性为什么特别重要？",
+      "answer": "手术是高风险场景，AI决策必须可解释。医生需要知道AI为什么这样建议，才能判断是否可以信任。SUREON的推理评估正是为了确保AI不只是在\"猜测\"，而是真正\"理解\"手术情境。",
+      "context": null,
+      "tags": [
+        "sureon",
+        "explainability",
+        "safety"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_64f03693",
+      "paper_id": "2603.06565",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.134932",
+      "updated_at": "2026-03-23T17:52:15.134937",
+      "question": "什么是RL中的过早exploitation问题？",
+      "answer": "智能体发现某种策略能获得奖励后，就固守这个策略不再探索，陷入局部最优，错过更好的长期策略。",
+      "context": null,
+      "tags": [
+        "rl",
+        "exploitation"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_384cf2ae",
+      "paper_id": "2603.06565",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.134980",
+      "updated_at": "2026-03-23T17:52:15.134982",
+      "question": "Logical Options如何引导强化学习？",
+      "answer": "将人类知识编码为逻辑规则，用符号先验引导RL探索。类似NLP的预训练-微调范式。",
+      "context": null,
+      "tags": [
+        "rl",
+        "symbolic"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_fadaada4",
+      "paper_id": "2603.06565",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135019",
+      "updated_at": "2026-03-23T17:52:15.135020",
+      "question": "符号知识与神经网络如何结合？",
+      "answer": "不是硬编码规则，而是将符号知识作为先验约束或初始化，让神经网络在训练过程中学会尊重这些约束。",
+      "context": null,
+      "tags": [
+        "rl",
+        "hybrid"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_9ae91f53",
+      "paper_id": "2603.06565",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135059",
+      "updated_at": "2026-03-23T17:52:15.135060",
+      "question": "为什么稀疏目标让RL更困难但更真实？",
+      "answer": "稀疏目标意味着大部分状态下没有奖励，只在关键节点给予奖励。这让探索更困难，但更符合真实世界。",
+      "context": null,
+      "tags": [
+        "rl",
+        "sparse"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_cadc1f1d",
+      "paper_id": "2603.06565",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135095",
+      "updated_at": "2026-03-23T17:52:15.135097",
+      "question": "这种方法与BEVLM的知识蒸馏有何异同？",
+      "answer": "同：都是将已有知识注入新系统。异：BEVLM是神经网络到神经网络，Boosting RL是符号到神经网络。",
+      "context": null,
+      "tags": [
+        "rl",
+        "comparison"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_446581fc",
+      "paper_id": "2603.06545",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135128",
+      "updated_at": "2026-03-23T17:52:15.135130",
+      "question": "LiveSense如何将WiFi网卡变成传感器？",
+      "answer": "利用CSI（信道状态信息）。人体移动会引起信号变化，通过分析这些变化可以反推距离、速度、呼吸频率。",
+      "context": null,
+      "tags": [
+        "wifi",
+        "csi"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_d6d3c339",
+      "paper_id": "2603.06545",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135188",
+      "updated_at": "2026-03-23T17:52:15.135190",
+      "question": "什么是CSI（信道状态信息）？",
+      "answer": "Channel State Information，描述无线信道特性的物理层参数。包含信号强度、相位、多径信息等。",
+      "context": null,
+      "tags": [
+        "wifi",
+        "phy"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_e4cce91b",
+      "paper_id": "2603.06545",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135226",
+      "updated_at": "2026-03-23T17:52:15.135228",
+      "question": "Range-Doppler感知能获取哪些信息？",
+      "answer": "Range（距离）和Doppler（速度）。两者结合可以追踪目标的位置和运动状态。",
+      "context": null,
+      "tags": [
+        "wifi",
+        "radar"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_2b2adabf",
+      "paper_id": "2603.06545",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135264",
+      "updated_at": "2026-03-23T17:52:15.135266",
+      "question": "为什么COTS设备比专用雷达更有优势？",
+      "answer": "COTS成本低、已普及、无需额外硬件。专用雷达贵、大、功耗高。",
+      "context": null,
+      "tags": [
+        "wifi",
+        "cots"
+      ],
+      "difficulty": 2,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_0eacae6f",
+      "paper_id": "2603.06545",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135301",
+      "updated_at": "2026-03-23T17:52:15.135303",
+      "question": "WiFi感知如何保护隐私？",
+      "answer": "WiFi感知只检测存在和动作，不识别个人身份，也不记录可识别的图像。符合隐私法规。",
+      "context": null,
+      "tags": [
+        "wifi",
+        "privacy"
+      ],
+      "difficulty": 2,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_1a790937",
+      "paper_id": "2603.06542",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135336",
+      "updated_at": "2026-03-23T17:52:15.135338",
+      "question": "为什么医疗AI需要分层专业化架构？",
+      "answer": "不同层次处理不同类型的信息：底层处理信号，中层识别医学特征，高层做临床推理。",
+      "context": null,
+      "tags": [
+        "medical",
+        "architecture"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_d65c71e3",
+      "paper_id": "2603.06542",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135369",
+      "updated_at": "2026-03-23T17:52:15.135370",
+      "question": "呼吸音频问答系统面临哪些挑战？",
+      "answer": "音频质量不稳定、需要整合多种患者信号、输出必须有临床意义、患者表达方式多样。",
+      "context": null,
+      "tags": [
+        "medical",
+        "audio"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_e2ad4e78",
+      "paper_id": "2603.06542",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135405",
+      "updated_at": "2026-03-23T17:52:15.135407",
+      "question": "音频诊断 vs 影像诊断的优劣？",
+      "answer": "音频：低成本、隐私友好、适合连续监测。影像：信息丰富、可视化，但设备贵、不便携。",
+      "context": null,
+      "tags": [
+        "medical",
+        "comparison"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_a812ede6",
+      "paper_id": "2603.06542",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135441",
+      "updated_at": "2026-03-23T17:52:15.135442",
+      "question": "如何确保AI诊断的临床准确性？",
+      "answer": "用医学标准标注训练数据、医学专家参与设计、多轮临床验证、与医生工作流程整合。",
+      "context": null,
+      "tags": [
+        "medical",
+        "accuracy"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_105c6f2b",
+      "paper_id": "2603.06542",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135473",
+      "updated_at": "2026-03-23T17:52:15.135475",
+      "question": "患者会信任AI的诊断吗？",
+      "answer": "影响因素：可解释性、准确性、透明度、医生背书。",
+      "context": null,
+      "tags": [
+        "medical",
+        "trust"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_9075d19c",
+      "paper_id": "2603.06522",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135506",
+      "updated_at": "2026-03-23T17:52:15.135507",
+      "question": "为什么胎儿口面裂检测困难？",
+      "answer": "专家稀缺、病症罕见、胎儿会动体位变化、超声图像质量不稳定。",
+      "context": null,
+      "tags": [
+        "medical",
+        "fetal"
+      ],
+      "difficulty": 2,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_1897e624",
+      "paper_id": "2603.06522",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135540",
+      "updated_at": "2026-03-23T17:52:15.135542",
+      "question": "AI如何实现诊断和教育双重目标？",
+      "answer": "AI系统既是诊断工具也是教学案例库。系统积累的案例可用于教学，缩小专家与新手差距。",
+      "context": null,
+      "tags": [
+        "medical",
+        "education"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_4c496001",
+      "paper_id": "2603.06522",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135574",
+      "updated_at": "2026-03-23T17:52:15.135576",
+      "question": "产前诊断的伦理边界在哪里？",
+      "answer": "关键问题：检测出异常后是否终止妊娠、家长知情权vs焦虑、隐私保护、公平性。",
+      "context": null,
+      "tags": [
+        "medical",
+        "ethics"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_5a1e78e0",
+      "paper_id": "2603.06522",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135607",
+      "updated_at": "2026-03-23T17:52:15.135609",
+      "question": "AI误诊的责任谁承担？",
+      "answer": "医生、AI公司、医院都可能承担责任。目前主流观点是AI辅助决策，最终责任在医生。",
+      "context": null,
+      "tags": [
+        "medical",
+        "liability"
+      ],
+      "difficulty": 4,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    },
+    {
+      "id": "fc_54abd7f5",
+      "paper_id": "2603.06522",
+      "discipline": "ai",
+      "created_at": "2026-03-23T17:52:15.135640",
+      "updated_at": "2026-03-23T17:52:15.135642",
+      "question": "如何让非专家地区医生信任AI？",
+      "answer": "可解释性、一致性、验证、培训、渐进式引入。",
+      "context": null,
+      "tags": [
+        "medical",
+        "deployment"
+      ],
+      "difficulty": 3,
+      "review_schedule": {
+        "created": "2026-03-23",
+        "intervals": [
+          1,
+          2,
+          4,
+          7,
+          15,
+          30
+        ],
+        "reviews": [
+          {
+            "stage": 1,
+            "date": "2026-03-24",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 2,
+            "date": "2026-03-25",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 3,
+            "date": "2026-03-27",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 4,
+            "date": "2026-03-30",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 5,
+            "date": "2026-04-07",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          },
+          {
+            "stage": 6,
+            "date": "2026-04-22",
+            "status": "pending",
+            "ease": null,
+            "completed_at": null
+          }
+        ],
+        "current_stage": 0,
+        "next_review": "2026-03-24"
+      },
+      "mastery_level": 0,
+      "status": "active",
+      "total_reviews": 0,
+      "avg_ease": 0,
+      "require_read": true
+    }
+  ],
+  "total_count": 37,
+  "by_discipline": {
+    "ai": 36
+  }
+}

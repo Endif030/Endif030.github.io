@@ -1,0 +1,88 @@
+[plugins] plugins.allow is empty; discovered non-bundled plugins may auto-load: adp-openclaw (/root/.openclaw/extensions/adp-openclaw/index.ts), ddingtalk (/root/.openclaw/extensions/ddingtalk/index.ts), qqbot (/root/.openclaw/extensions/qqbot/index.ts), wecom (/root/.openclaw/extensions/wecom/index.ts). Set plugins.allow to explicit trusted ids.
+[plugins] feishu_doc: Registered feishu_doc, feishu_app_scopes
+[plugins] feishu_wiki: Registered feishu_wiki tool
+[plugins] feishu_drive: Registered feishu_drive tool
+[plugins] feishu_bitable: Registered bitable tools
+OpenClaw status
+
+Overview
+┌─────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Item            │ Value                                                                                             │
+├─────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Dashboard       │ http://127.0.0.1:18789/                                                                           │
+│ OS              │ linux 6.6.117-45.1.oc9.x86_64 (x64) · node 22.22.0                                                │
+│ Tailscale       │ off                                                                                               │
+│ Channel         │ stable (default)                                                                                  │
+│ Update          │ available · pnpm · npm update 2026.3.1                                                            │
+│ Gateway         │ local · ws://127.0.0.1:18789 (local loopback) · reachable 22ms · auth token · VM-0-5-opencloudos  │
+│                 │ (10.4.0.5) app 2026.2.26 linux 6.6.117-45.1.oc9.x86_64                                            │
+│ Gateway service │ systemd installed · enabled · running (pid 437637, state active)                                  │
+│ Node service    │ systemd not installed                                                                             │
+│ Agents          │ 1 · 1 bootstrap file present · sessions 19 · default main active 1m ago                           │
+│ Memory          │ 0 files · 0 chunks · sources memory · plugin memory-core · vector unknown · fts ready · cache on  │
+│                 │ (11)                                                                                              │
+│ Probes          │ skipped (use --deep)                                                                              │
+│ Events          │ none                                                                                              │
+│ Heartbeat       │ 30m (main)                                                                                        │
+│ Sessions        │ 19 active · default k2p5 (262k ctx) · ~/.openclaw/agents/main/sessions/sessions.json              │
+└─────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Security audit
+Summary: 3 critical · 5 warn · 1 info
+  CRITICAL Open groupPolicy with elevated tools enabled
+    Found groupPolicy="open" at: - channels.feishu.groupPolicy With tools.elevated enabled, a prompt injection in those rooms can become a high-impact incident.
+    Fix: Set groupPolicy="allowlist" and keep elevated allowlists extremely tight.
+  CRITICAL Open groupPolicy with runtime/filesystem tools exposed
+    Found groupPolicy="open" at: - channels.feishu.groupPolicy Risky tool exposure contexts: - agents.defaults (sandbox=off; runtime=[exec, process]; fs=[read, wri…
+    Fix: For open groups, prefer tools.profile="messaging" (or deny group:runtime/group:fs), set tools.fs.workspaceOnly=true, and use agents.defaults.sandbox.mode="all" for exposed agents.
+  CRITICAL Feishu security warning
+    Feishu[default] groups: groupPolicy="open" allows any member to trigger (mention-gated). Set channels.feishu.groupPolicy="allowlist" + channels.feishu.groupAll…
+  WARN Reverse proxy headers are not trusted
+    gateway.bind is loopback and gateway.trustedProxies is empty. If you expose the Control UI through a reverse proxy, configure trusted proxies so local-client c…
+    Fix: Set gateway.trustedProxies to your proxy IPs or keep the Control UI local-only.
+  WARN Potential multi-user setup detected (personal-assistant model warning)
+    Heuristic signals indicate this gateway may be reachable by multiple users: - channels.feishu.groupPolicy="open" Runtime/process tools are exposed without full…
+    Fix: If users may be mutually untrusted, split trust boundaries (separate gateways + credentials, ideally separate OS users/hosts). If you intentionally run shared-user access, set agents.defaults.sandbox.mode="all", keep tools.fs.workspaceOnly=true, deny runtime/fs/web tools unless required, and keep personal/private identities + credentials off that runtime.
+  WARN Extensions exist but plugins.allow is not set
+    Found 4 extension(s) under /root/.openclaw/extensions. Without plugins.allow, any discovered plugin id may load (depending on config and plugin behavior).
+    Fix: Set plugins.allow to an explicit list of plugin ids you trust.
+… +2 more
+Full report: openclaw security audit
+Deep probe: openclaw security audit --deep
+
+Channels
+┌──────────────┬─────────┬────────┬───────────────────────────────────────────────────────────────────────────────────┐
+│ Channel      │ Enabled │ State  │ Detail                                                                            │
+├──────────────┼─────────┼────────┼───────────────────────────────────────────────────────────────────────────────────┤
+│ QQ Bot       │ ON      │ SETUP  │ not configured                                                                    │
+│ Feishu       │ ON      │ OK     │ configured                                                                        │
+│ WeCom        │ ON      │ SETUP  │ not configured                                                                    │
+│ ADP OpenClaw │ ON      │ SETUP  │ not configured                                                                    │
+│ DingTalk     │ OFF     │ OFF    │ disabled                                                                          │
+└──────────────┴─────────┴────────┴───────────────────────────────────────────────────────────────────────────────────┘
+
+Sessions
+┌────────────────────────────────────────────────┬────────┬─────────┬──────────────┬──────────────────────────────────┐
+│ Key                                            │ Kind   │ Age     │ Model        │ Tokens                           │
+├────────────────────────────────────────────────┼────────┼─────────┼──────────────┼──────────────────────────────────┤
+│ agent:main:feishu:direct:ou_bbf…               │ direct │ 1m ago  │ k2p5         │ 203k/262k (78%) · 🗄️ 403% cached │
+│ agent:main:feishu:direct:heartb…               │ direct │ 3m ago  │ k2p5         │ 16k/262k (6%) · 🗄️ 60% cached    │
+│ agent:main:cron:c32f23dc-9baa-4…               │ direct │ 3m ago  │ k2p5         │ 15k/262k (6%) · 🗄️ 155% cached   │
+│ agent:main:subagent:c3f93d11-39…               │ direct │ 34m ago │ k2p5         │ 14k/262k (5%) · 🗄️ 353% cached   │
+│ agent:main:main                                │ direct │ 1h ago  │ k2p5         │ 15k/262k (6%) · 🗄️ 242% cached   │
+│ agent:main:cron:78d68009-e456-4…               │ direct │ 1h ago  │ k2p5         │ 15k/262k (6%) · 🗄️ 483% cached   │
+│ agent:main:cron:78d68009-e456-4…               │ direct │ 1h ago  │ k2p5         │ 15k/262k (6%) · 🗄️ 483% cached   │
+│ agent:main:cron:d108e3bb-71c2-4…               │ direct │ 1h ago  │ k2p5         │ 15k/262k (6%) · 🗄️ 291% cached   │
+│ agent:main:cron:d108e3bb-71c2-4…               │ direct │ 1h ago  │ k2p5         │ 15k/262k (6%) · 🗄️ 291% cached   │
+│ agent:main:cron:72876b29-fa00-4…               │ direct │ 1h ago  │ k2p5         │ 45k/262k (17%) · 🗄️ 1277% cached │
+└────────────────────────────────────────────────┴────────┴─────────┴──────────────┴──────────────────────────────────┘
+
+FAQ: https://docs.openclaw.ai/faq
+Troubleshooting: https://docs.openclaw.ai/troubleshooting
+
+Update available (npm 2026.3.1). Run: openclaw update
+
+Next steps:
+  Need to share?      openclaw status --all
+  Need to debug live? openclaw logs --follow
+  Need to test channels? openclaw status --deep

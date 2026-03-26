@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.26",
+    "lastTouchedAt": "2026-03-01T19:22:07.749Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-01T19:22:07.703Z",
+    "lastRunVersion": "2026.2.26",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "kimi-coding:default": {
+        "provider": "kimi-coding",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "moonshot": {
+        "baseUrl": "https://api.moonshot.cn/v1",
+        "apiKey": "sk-kimi-q0eMaaASTM5uOnBWJ25VGmorsCDMoTP7RSriIoPOKSQgBbEbcwVD4Zcycq2IRWCP",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "kimi-k2-thinking",
+            "name": "Kimi K2 Thinking"
+          },
+          {
+            "id": "kimi-k2-thinking-turbo",
+            "name": "Kimi K2 Thinking Turbo"
+          },
+          {
+            "id": "kimi-k2.5",
+            "name": "Kimi K2.5"
+          },
+          {
+            "id": "moonshot-v1-128k",
+            "name": "Moonshot V1 128K"
+          }
+        ]
+      },
+      "kimi-coding": {
+        "baseUrl": "https://api.kimi.com/coding/",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "k2p5",
+            "name": "Kimi for Coding",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "kimi-coding/k2p5"
+      },
+      "models": {
+        "kimi-coding/k2p5": {
+          "alias": "Kimi for Coding"
+        }
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "blockStreamingDefault": "on",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "all"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a92826c79ce4dbb6",
+      "appSecret": "FNtwhE9aGa9C4QPclmupPbU4sforEjtS",
+      "domain": "feishu",
+      "groupPolicy": "open"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://43.159.145.11:18789"
+      ],
+      "allowInsecureAuth": false,
+      "dangerouslyDisableDeviceAuth": false
+    },
+    "auth": {
+      "mode": "token",
+      "token": "9f8f09ebd265564a8d67800a843890c87ae01bfbda06b72d"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
+      },
+      "qqbot": {
+        "enabled": true
+      },
+      "ddingtalk": {
+        "enabled": true
+      },
+      "wecom": {
+        "enabled": true
+      },
+      "adp-openclaw": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "qqbot": {
+        "source": "npm",
+        "spec": "@sliverp/qqbot@latest",
+        "installPath": "/root/.openclaw/extensions/qqbot",
+        "version": "1.5.0",
+        "resolvedName": "@sliverp/qqbot",
+        "resolvedVersion": "1.5.0",
+        "resolvedSpec": "@sliverp/qqbot@1.5.0",
+        "integrity": "sha512-CCEqfgtVCDYrpAc59et4BG8WjKAtRrFjxgYHh0PmJS4XLPsLH9m+WHtwy+PY6gCiiEzpqyVUMVDDV0PXqy7npA==",
+        "shasum": "d0d9465dbe1306583944eb833fff2e19bed8fde6",
+        "resolvedAt": "2026-02-27T08:04:26.112Z",
+        "installedAt": "2026-02-27T08:05:49.689Z"
+      },
+      "ddingtalk": {
+        "source": "npm",
+        "spec": "@largezhou/ddingtalk",
+        "installPath": "/root/.openclaw/extensions/ddingtalk",
+        "version": "1.3.2",
+        "resolvedName": "@largezhou/ddingtalk",
+        "resolvedVersion": "1.3.2",
+        "resolvedSpec": "@largezhou/ddingtalk@1.3.2",
+        "integrity": "sha512-WizzhkxDVZidTub9SAEQtzYeGtw2c3sMfBCfBVnTwutYpniuD/u0zNobRu4IVr+4sMicU1MA3LvIKNjWpbaR3Q==",
+        "shasum": "453c3fe0deecfd0d7da6776904f2c1439a60c107",
+        "resolvedAt": "2026-02-27T08:05:55.813Z",
+        "installedAt": "2026-02-27T08:06:13.591Z"
+      },
+      "wecom": {
+        "source": "npm",
+        "spec": "@mocrane/wecom",
+        "installPath": "/root/.openclaw/extensions/wecom",
+        "version": "2026.2.27",
+        "resolvedName": "@mocrane/wecom",
+        "resolvedVersion": "2026.2.27",
+        "resolvedSpec": "@mocrane/wecom@2026.2.27",
+        "integrity": "sha512-SPKBc//AFFSBssIVqLiE/YFPuzC5sVP6DFAL0lGzSuVAGXBCAG3ulYFO9QYDj/SAvGEyKBpHVD7MfnWd6qnPRA==",
+        "shasum": "ca863e9e95350f52ada748fde5faca893b1f8ba4",
+        "resolvedAt": "2026-02-27T08:06:21.176Z",
+        "installedAt": "2026-02-27T08:06:40.447Z"
+      },
+      "adp-openclaw": {
+        "source": "npm",
+        "spec": "adp-openclaw",
+        "installPath": "/root/.openclaw/extensions/adp-openclaw",
+        "version": "0.0.25",
+        "resolvedName": "adp-openclaw",
+        "resolvedVersion": "0.0.25",
+        "resolvedSpec": "adp-openclaw@0.0.25",
+        "integrity": "sha512-4wUlP4ip3ivuvS2Y7AAGWvR80i44xY2QoHlfnD6vb6F5Y/peFaCjUwN4FE9YKiWobEChxBXtDzp++zR06VzRyQ==",
+        "shasum": "3e73325f3a85a7cb46494a4b05c18166637307c9",
+        "resolvedAt": "2026-02-27T08:06:48.047Z",
+        "installedAt": "2026-02-27T08:06:49.212Z"
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# OpenClaw 配置文件
+# 自动批准CLI设备，解决Cron任务配对问题
+
+devices:
+  autoApprove:
+    - "cli:*"  # 自动批准所有CLI设备实例

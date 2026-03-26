@@ -1,0 +1,49 @@
+#!/bin/bash
+# 知识卡片推送任务 - 修复版 (v4)
+# 使用方法: flashcard_push.sh <time_slot>
+
+export PATH="/root/.nvm/versions/node/v22.22.0/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+SLOT=$1
+USER_ID="ou_bbfc027431c61a8ba421c54c7bb0f5c4"
+LOG_FILE="/tmp/flashcard-push.log"
+TMP_MSG_FILE="/tmp/flashcard_msg_${SLOT//:/}.txt"
+
+if [ -z "$SLOT" ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 错误: 未提供时间槽" >> "$LOG_FILE"
+    exit 1
+fi
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始推送知识卡片 [$SLOT]..." >> "$LOG_FILE"
+
+# 生成消息内容到临时文件
+cd /root/.openclaw/workspace/skills/paper-research-assistant
+python3 scripts/spaced_repetition_v2.py --slot "$SLOT" --message-only > "$TMP_MSG_FILE" 2>&1
+
+if [ ! -s "$TMP_MSG_FILE" ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 错误: 消息生成失败或为空 [$SLOT]" >> "$LOG_FILE"
+    rm -f "$TMP_MSG_FILE"
+    exit 1
+fi
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 消息内容生成成功 ($(wc -c < "$TMP_MSG_FILE") 字节)，准备发送..." >> "$LOG_FILE"
+
+# 使用 openclaw message send 发送消息
+# 修复：直接读取文件内容传递给 --message 参数
+MESSAGE_CONTENT=$(cat "$TMP_MSG_FILE")
+openclaw message send --channel feishu --target "$USER_ID" --message "$MESSAGE_CONTENT" >> "$LOG_FILE" 2>&1
+
+RESULT=$?
+if [ $RESULT -eq 0 ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 消息发送成功 [$SLOT]" >> "$LOG_FILE"
+else
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 消息发送失败 [$SLOT], 退出码: $RESULT" >> "$LOG_FILE"
+fi
+
+# 清理临时文件
+rm -f "$TMP_MSG_FILE"
+
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 完成 [$SLOT]" >> "$LOG_FILE"
+echo "---" >> "$LOG_FILE"
+
+exit $RESULT

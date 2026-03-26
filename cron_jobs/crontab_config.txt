@@ -1,0 +1,19 @@
+# 系统任务
+*/5 * * * * flock -xn /tmp/stargate.lock -c '/usr/local/qcloud/stargate/admin/start.sh > /dev/null 2>&1 &'
+
+# 简单提醒（外部脚本）
+5 1 * * * /tmp/simple_reminder.sh
+
+# ===== 论文助手定时任务 =====
+
+# 论文收集 - 每周一 09:00
+0 9 * * 1 export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/paper_fetch_weekly.sh >> /tmp/paper_fetch_cron.log 2>&1
+
+# 知识卡片推送 - 每日4次
+30 8 * * * export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/flashcard_push.sh 08:30 >> /tmp/flashcard_cron.log 2>&1
+0 12 * * * export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/flashcard_push.sh 12:00 >> /tmp/flashcard_cron.log 2>&1
+0 16 * * * export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/flashcard_push.sh 16:00 >> /tmp/flashcard_cron.log 2>&1
+0 20 * * * export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/flashcard_push.sh 20:00 >> /tmp/flashcard_cron.log 2>&1
+
+# 月报生成 - 每月1日 21:00
+0 21 1 * * export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/monthly_report.sh >> /tmp/monthly_report_cron.log 2>&1

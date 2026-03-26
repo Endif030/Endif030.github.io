@@ -6,8 +6,8 @@
 
 # ===== 论文助手定时任务 =====
 
-# 论文收集 - 每周一 09:00
-0 9 * * 1 export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/paper_fetch_weekly.sh >> /tmp/paper_fetch_cron.log 2>&1
+# 每周初始化 - 每周一 09:00（合并：收集论文+生成周文档+前3篇注释稿）
+0 9 * * 1 export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/weekly_init.sh >> /tmp/weekly-init.log 2>&1
 
 # 知识卡片推送 - 每日4次
 30 8 * * * export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH" && /root/.openclaw/workspace/cron_jobs/flashcard_push.sh 08:30 >> /tmp/flashcard_cron.log 2>&1

@@ -2,7 +2,7 @@
 # 每周初始化任务 - 每周一 09:00
 # 合并功能：收集论文 + 生成周文档 + 下载前3篇PDF + 生成前3篇注释稿
 
-export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH"
+export PATH="/root/.nvm/versions/node/v22.22.0/bin:/root/.local/share/pnpm:$PATH"
 LOG_FILE="/tmp/weekly-init.log"
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始每周初始化..." >> "$LOG_FILE"

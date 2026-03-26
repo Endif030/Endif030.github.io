@@ -2,7 +2,7 @@
 # 知识卡片推送任务 - 修复版 (v4)
 # 使用方法: flashcard_push.sh <time_slot>
 
-export PATH="/root/.nvm/versions/node/v22.22.0/bin:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+export PATH="/root/.nvm/versions/node/v22.22.0/bin:/root/.local/share/pnpm:/root/.local/bin:/root/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
 SLOT=$1
 USER_ID="ou_bbfc027431c61a8ba421c54c7bb0f5c4"

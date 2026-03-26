@@ -1,7 +1,7 @@
 #!/bin/bash
 # 论文阅读月报 - 每月1日 21:00
 
-export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH"
+export PATH="/root/.nvm/versions/node/v22.22.0/bin:/root/.local/share/pnpm:$PATH"
 LOG_FILE="/tmp/monthly-report.log"
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始生成月报..." >> "$LOG_FILE"

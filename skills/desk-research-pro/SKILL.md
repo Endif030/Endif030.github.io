@@ -30,6 +30,8 @@ description: 专业桌面研究助手，用于收集公开资料、整理行业�
 
 ## 工作流程
 
+> 与 `listed-company-writing` 的衔接：本 skill 输出 Research Pack；写作 skill 仅消费该 Pack 成文。
+
 ### Phase 1: 需求确认与框架设计
 
 **第一步：确认研究需求**
@@ -200,6 +202,7 @@ queries = [
 ## 使用参考文件
 
 详细工作流程、代码模板、报告范例请查阅：
+- [references/execution-traceability-sop.md](references/execution-traceability-sop.md) - 可追溯执行规范（新增，强制先归档后写作）
 
 - [references/workflow.md](references/workflow.md) - 详细工作流程指南
 - [references/report-template.md](references/report-template.md) - 完整报告模板

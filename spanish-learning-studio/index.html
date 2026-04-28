@@ -58,26 +58,21 @@
     </section>
 
     <section>
-      <h3>今日练习</h3>
-      <div id="practiceProgress" class="muted"></div>
-      <div id="practiceCard" class="card" style="margin-top:10px;">
-        <div class="muted" id="practiceType"></div>
-        <div id="practicePrompt" style="font-weight:600;margin:8px 0;"></div>
-        <input id="practiceInput" type="text" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:8px;" placeholder="请输入答案" />
-        <div class="actions" style="margin-top:10px;">
-          <button id="practiceSubmit" type="button">提交答案</button>
-          <button id="practiceNext" type="button">下一题</button>
-        </div>
-        <div id="practiceFeedback" class="muted" style="margin-top:8px;"></div>
-      </div>
-      <div style="margin-top:12px;" id="task"></div>
+      <h3>今日练习入口</h3>
+      <div id="task"></div>
       <div class="muted" id="shadowing"></div>
-      <label><input type="checkbox" id="finished" /> 今日课程完成</label>
+      <div id="practiceSummary" class="card" style="margin-top:10px;"></div>
+      <div class="actions" style="margin-top:10px;">
+        <a id="startPractice" href="#"><button type="button">开始练习</button></a>
+        <a id="startBoost" href="#"><button type="button" style="background:#7c3aed;">错题巩固</button></a>
+      </div>
+      <label style="margin-top:10px;display:block;"><input type="checkbox" id="finished" /> 今日课程完成</label>
     </section>
   </div>
   <script src="js/siteConfig.js"></script>
   <script src="js/curriculum.js"></script>
   <script src="js/storage.js"></script>
+  <script src="js/reviewEngine.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

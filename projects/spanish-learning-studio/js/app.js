@@ -7,6 +7,29 @@
     return window.curriculum.find(d => d.id === dayId) || window.curriculum[0];
   }
 
+  const PREF_KEY = "spanish_studio_voice_prefs_v1";
+
+  function saveVoicePrefs() {
+    const select = qs("voiceSelect");
+    const rate = qs("rate");
+    const pitch = qs("pitch");
+    try {
+      localStorage.setItem(PREF_KEY, JSON.stringify({
+        voiceName: select?.value || "",
+        rate: Number(rate?.value || 1),
+        pitch: Number(pitch?.value || 1)
+      }));
+    } catch (e) {}
+  }
+
+  function loadVoicePrefs() {
+    try {
+      return JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
   function getVoicePrefs() {
     const voiceName = qs("voiceSelect")?.value || "";
     const rate = Number(qs("rate")?.value || 1);
@@ -50,7 +73,8 @@
     const voices = allVoices.filter(v => v.lang?.startsWith("es"));
     const all = voices.length ? voices : allVoices;
 
-    const current = select.value;
+    const stored = loadVoicePrefs();
+    const current = select.value || stored.voiceName || "";
     select.innerHTML = "";
 
     if (!all.length) {
@@ -72,7 +96,19 @@
     }
 
     if (current) select.value = current;
-    if (!select.value && all[0]) select.value = all[0].name;
+    if (!select.value && all[0]) {
+      const preferred = all.find(v => /google español/i.test(v.name) && /es-ES/i.test(v.lang))
+        || all.find(v => /google español/i.test(v.name))
+        || all.find(v => /es-ES/i.test(v.lang))
+        || all.find(v => /es-MX/i.test(v.lang))
+        || all[0];
+      select.value = preferred.name;
+    }
+
+    if (stored.rate && !rate.dataset.inited) rate.value = String(stored.rate);
+    if (stored.pitch && !pitch.dataset.inited) pitch.value = String(stored.pitch);
+    rate.dataset.inited = "1";
+    pitch.dataset.inited = "1";
 
     rateValue.textContent = Number(rate.value).toFixed(2);
     pitchValue.textContent = Number(pitch.value).toFixed(2);
@@ -159,7 +195,11 @@
     }
 
     if (el instanceof HTMLSelectElement && el.id === "voiceSelect") {
-      // no-op: value will be consumed by speak()
+      saveVoicePrefs();
+    }
+
+    if ((el instanceof HTMLInputElement) && (el.id === "rate" || el.id === "pitch")) {
+      saveVoicePrefs();
     }
   });
 
@@ -173,6 +213,14 @@
   const refreshBtn = qs("refreshVoices");
   if (refreshBtn) {
     refreshBtn.addEventListener("click", () => renderVoiceControls());
+  }
+
+  const toggleBtn = qs("toggleSettings");
+  const settingsPanel = qs("settingsPanel");
+  if (toggleBtn && settingsPanel) {
+    toggleBtn.addEventListener("click", () => {
+      settingsPanel.classList.toggle("hidden");
+    });
   }
 
   function scheduleVoiceWarmup() {

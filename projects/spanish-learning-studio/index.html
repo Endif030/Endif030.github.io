@@ -28,7 +28,11 @@
       <div id="vocab" class="grid"></div>
     </section>
 
-    <section>
+    <div class="topbar">
+      <button id="toggleSettings" type="button">⚙️ 发音设置</button>
+    </div>
+
+    <section id="settingsPanel" class="hidden">
       <h3>发音设置</h3>
       <div class="grid">
         <div class="card">
@@ -37,7 +41,7 @@
           <div class="actions" style="margin-top:8px;">
             <button id="refreshVoices" type="button">刷新音色列表</button>
           </div>
-          <div class="muted" id="voiceHint">优先选择 es-ES / es-MX，音质会更自然</div>
+          <div class="muted" id="voiceHint">默认将自动选择你偏好的 Google español (es-ES)</div>
         </div>
         <div class="card">
           <label>语速：<span id="rateValue">1.00</span></label>

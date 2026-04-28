@@ -8,5 +8,8 @@ section { background: #fff; border-radius: 12px; padding: 16px; margin: 12px 0; 
 .sentence { display: flex; justify-content: space-between; gap: 12px; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
 .actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 button { border: 0; background: #2563eb; color: white; padding: 6px 10px; border-radius: 8px; cursor: pointer; }
+.topbar { display:flex; justify-content:flex-end; margin: 8px 0 12px; }
+#toggleSettings { background:#334155; }
+.hidden { display:none; }
 .nav { display: flex; gap: 8px; margin-top: 8px; }
 .nav a { color: #2563eb; text-decoration: none; }

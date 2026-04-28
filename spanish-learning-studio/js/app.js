@@ -10,12 +10,10 @@
   const PREF_KEY = "spanish_studio_voice_prefs_v1";
 
   function saveVoicePrefs() {
-    const select = qs("voiceSelect");
     const rate = qs("rate");
     const pitch = qs("pitch");
     try {
       localStorage.setItem(PREF_KEY, JSON.stringify({
-        voiceName: select?.value || "",
         rate: Number(rate?.value || 1),
         pitch: Number(pitch?.value || 1)
       }));
@@ -24,37 +22,25 @@
 
   function loadVoicePrefs() {
     try {
-      const data = JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
-      const migrated = localStorage.getItem("spanish_voice_pref_migrated_v2");
-      if (!migrated) {
-        // one-time migration: reset legacy default to ensure Google español(es-ES) can be auto-selected
-        if (data.voiceName && !/google español/i.test(data.voiceName)) {
-          delete data.voiceName;
-          localStorage.setItem(PREF_KEY, JSON.stringify(data));
-        }
-        localStorage.setItem("spanish_voice_pref_migrated_v2", "1");
-      }
-      return data;
+      return JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
     } catch (e) {
       return {};
     }
   }
 
   function getVoicePrefs() {
-    const voiceName = qs("voiceSelect")?.value || "";
     const rate = Number(qs("rate")?.value || 1);
     const pitch = Number(qs("pitch")?.value || 1);
-    return { voiceName, rate, pitch };
+    return { rate, pitch };
   }
 
   function resolveVoice() {
     const voices = window.speechSynthesis.getVoices() || [];
-    const prefs = getVoicePrefs();
-    if (prefs.voiceName) {
-      const byName = voices.find(v => v.name === prefs.voiceName);
-      if (byName) return byName;
-    }
-    return voices.find(v => v.lang === window.siteConfig.languageCode) || voices.find(v => v.lang === window.siteConfig.fallbackLanguageCode) || voices[0];
+    return voices.find(v => v.name.trim() === "Google español" && /es-ES/i.test(v.lang))
+      || voices.find(v => /google español/i.test(v.name) && /es-ES/i.test(v.lang))
+      || voices.find(v => /es-ES/i.test(v.lang))
+      || voices.find(v => /es-MX/i.test(v.lang))
+      || voices[0];
   }
 
   function speak(text, slow) {
@@ -71,52 +57,22 @@
   }
 
   function renderVoiceControls() {
-    const select = qs("voiceSelect");
     const rate = qs("rate");
     const pitch = qs("pitch");
     const rateValue = qs("rateValue");
     const pitchValue = qs("pitchValue");
     const voiceHint = qs("voiceHint");
-    if (!select || !rate || !pitch) return;
+    if (!rate || !pitch) return;
 
     const allVoices = window.speechSynthesis.getVoices() || [];
-    const voices = allVoices.filter(v => v.lang?.startsWith("es"));
-    const all = voices.length ? voices : allVoices;
+    const locked = allVoices.find(v => v.name.trim() === "Google español" && /es-ES/i.test(v.lang));
+    if (voiceHint) {
+      voiceHint.textContent = locked
+        ? "已锁定：Google español (es-ES)"
+        : "目标音色未就绪，暂回退到 es-ES/es-MX 可用音色";
+    }
 
     const stored = loadVoicePrefs();
-    const current = select.value || stored.voiceName || "";
-    select.innerHTML = "";
-
-    if (!all.length) {
-      const opt = document.createElement("option");
-      opt.value = "";
-      opt.textContent = "暂无可用音色（请点刷新或稍等1-2秒）";
-      select.appendChild(opt);
-      if (voiceHint) voiceHint.textContent = "当前浏览器尚未加载语音引擎，可点击“刷新音色列表”重试。";
-    } else {
-      all.forEach(v => {
-        const opt = document.createElement("option");
-        opt.value = v.name;
-        opt.textContent = `${v.name} (${v.lang})`;
-        select.appendChild(opt);
-      });
-      if (voiceHint) voiceHint.textContent = voices.length
-        ? `已加载 ${voices.length} 个西语音色`
-        : `未检测到西语音色，已显示全部 ${all.length} 个系统音色`;
-    }
-
-    if (current) select.value = current;
-    if (!select.value && all[0]) {
-      const preferred = all.find(v => v.name.trim() === "Google español" && /es-ES/i.test(v.lang))
-        || all.find(v => /google español/i.test(v.name) && /es-ES/i.test(v.lang))
-        || all.find(v => /google español/i.test(v.name))
-        || all.find(v => /es-ES/i.test(v.lang))
-        || all.find(v => /es-MX/i.test(v.lang))
-        || all[0];
-      select.value = preferred.name;
-      saveVoicePrefs();
-    }
-
     if (stored.rate && !rate.dataset.inited) rate.value = String(stored.rate);
     if (stored.pitch && !pitch.dataset.inited) pitch.value = String(stored.pitch);
     rate.dataset.inited = "1";
@@ -222,10 +178,6 @@
       }
     }
 
-    if (el instanceof HTMLSelectElement && el.id === "voiceSelect") {
-      saveVoicePrefs();
-    }
-
     if ((el instanceof HTMLInputElement) && (el.id === "rate" || el.id === "pitch")) {
       saveVoicePrefs();
     }
@@ -238,10 +190,6 @@
     });
   }
 
-  const refreshBtn = qs("refreshVoices");
-  if (refreshBtn) {
-    refreshBtn.addEventListener("click", () => renderVoiceControls());
-  }
 
   const submitBtn = qs("practiceSubmit");
   const nextBtn = qs("practiceNext");

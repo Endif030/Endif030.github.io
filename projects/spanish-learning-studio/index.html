@@ -34,7 +34,10 @@
         <div class="card">
           <label>音色选择</label>
           <select id="voiceSelect" style="width:100%;margin-top:6px;"></select>
-          <div class="muted">优先选择 es-ES / es-MX，音质会更自然</div>
+          <div class="actions" style="margin-top:8px;">
+            <button id="refreshVoices" type="button">刷新音色列表</button>
+          </div>
+          <div class="muted" id="voiceHint">优先选择 es-ES / es-MX，音质会更自然</div>
         </div>
         <div class="card">
           <label>语速：<span id="rateValue">1.00</span></label>

@@ -43,19 +43,33 @@
     const pitch = qs("pitch");
     const rateValue = qs("rateValue");
     const pitchValue = qs("pitchValue");
+    const voiceHint = qs("voiceHint");
     if (!select || !rate || !pitch) return;
 
-    const voices = (window.speechSynthesis.getVoices() || []).filter(v => v.lang?.startsWith("es"));
-    const all = voices.length ? voices : (window.speechSynthesis.getVoices() || []);
+    const allVoices = window.speechSynthesis.getVoices() || [];
+    const voices = allVoices.filter(v => v.lang?.startsWith("es"));
+    const all = voices.length ? voices : allVoices;
 
     const current = select.value;
     select.innerHTML = "";
-    all.forEach(v => {
+
+    if (!all.length) {
       const opt = document.createElement("option");
-      opt.value = v.name;
-      opt.textContent = `${v.name} (${v.lang})`;
+      opt.value = "";
+      opt.textContent = "暂无可用音色（请点刷新或稍等1-2秒）";
       select.appendChild(opt);
-    });
+      if (voiceHint) voiceHint.textContent = "当前浏览器尚未加载语音引擎，可点击“刷新音色列表”重试。";
+    } else {
+      all.forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v.name;
+        opt.textContent = `${v.name} (${v.lang})`;
+        select.appendChild(opt);
+      });
+      if (voiceHint) voiceHint.textContent = voices.length
+        ? `已加载 ${voices.length} 个西语音色`
+        : `未检测到西语音色，已显示全部 ${all.length} 个系统音色`;
+    }
 
     if (current) select.value = current;
     if (!select.value && all[0]) select.value = all[0].name;
@@ -156,6 +170,18 @@
     });
   }
 
-  window.speechSynthesis?.addEventListener?.("voiceschanged", () => render());
+  const refreshBtn = qs("refreshVoices");
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", () => renderVoiceControls());
+  }
+
+  function scheduleVoiceWarmup() {
+    [0, 300, 1000, 2000].forEach(ms => {
+      setTimeout(() => renderVoiceControls(), ms);
+    });
+  }
+
+  window.speechSynthesis?.addEventListener?.("voiceschanged", () => renderVoiceControls());
   render();
+  scheduleVoiceWarmup();
 })();

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>西语A1学习工坊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>西语A1学习工坊</h1>
+    <div class="muted">日更承载版 · 课程数据驱动 · 可扩展到 Day30+</div>
+
+    <section>
+      <h2 id="title"></h2>
+      <ul id="goals"></ul>
+      <div class="nav">
+        <a href="index.html?day=day-001">Day1</a>
+        <a href="index.html?day=day-002">Day2（预留）</a>
+      </div>
+    </section>
+
+    <section>
+      <h3>词汇卡</h3>
+      <div id="vocab" class="grid"></div>
+    </section>
+
+    <section>
+      <h3>跟读句单（可点击发音）</h3>
+      <div id="sentences"></div>
+      <div id="progress" class="muted"></div>
+    </section>
+
+    <section>
+      <h3>输出任务</h3>
+      <div id="task"></div>
+      <div class="muted" id="shadowing"></div>
+      <label><input type="checkbox" id="finished" /> 今日课程完成</label>
+    </section>
+  </div>
+  <script src="js/siteConfig.js"></script>
+  <script src="js/curriculum.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

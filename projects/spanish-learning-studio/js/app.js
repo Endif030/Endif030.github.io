@@ -1,0 +1,99 @@
+(function () {
+  function qs(id) { return document.getElementById(id); }
+
+  function getCurrentDay() {
+    const url = new URL(window.location.href);
+    const dayId = url.searchParams.get("day") || window.siteConfig.defaultDayId;
+    return window.curriculum.find(d => d.id === dayId) || window.curriculum[0];
+  }
+
+  function speak(text, slow) {
+    if (!("speechSynthesis" in window)) return;
+    const u = new SpeechSynthesisUtterance(text);
+    const voices = window.speechSynthesis.getVoices() || [];
+    const voice = voices.find(v => v.lang === window.siteConfig.languageCode) || voices.find(v => v.lang === window.siteConfig.fallbackLanguageCode);
+    if (voice) u.voice = voice;
+    u.lang = voice?.lang || window.siteConfig.languageCode;
+    u.rate = slow ? 0.75 : 1.0;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+
+  function render() {
+    const day = getCurrentDay();
+    const state = window.progressStore.getDay(day.id);
+    qs("title").textContent = `Day ${day.dayNumber} · ${day.title}`;
+
+    const goalUl = qs("goals");
+    goalUl.innerHTML = "";
+    day.goals.forEach(g => {
+      const li = document.createElement("li");
+      li.textContent = g;
+      goalUl.appendChild(li);
+    });
+
+    const vocabWrap = qs("vocab");
+    vocabWrap.innerHTML = "";
+    day.vocab.forEach(v => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<strong>${v.es}</strong><div>${v.zh}</div><div class="muted">/${v.ipa}/ · ${v.hint}</div>`;
+      vocabWrap.appendChild(card);
+    });
+
+    const sentenceWrap = qs("sentences");
+    sentenceWrap.innerHTML = "";
+    day.sentences.forEach((s, i) => {
+      const row = document.createElement("div");
+      row.className = "sentence";
+      const checked = state.completedSentenceIds.includes(i) ? "checked" : "";
+      row.innerHTML = `
+        <div>
+          <div><strong>${s.es}</strong></div>
+          <div>${s.zh}</div>
+          <div class="muted">/${s.ipa}/</div>
+        </div>
+        <div class="actions">
+          <button data-act="slow" data-i="${i}">慢速</button>
+          <button data-act="normal" data-i="${i}">正常</button>
+          <label><input type="checkbox" data-act="done" data-i="${i}" ${checked}/> 已跟读</label>
+        </div>`;
+      sentenceWrap.appendChild(row);
+    });
+
+    qs("task").textContent = day.practice.outputTask;
+    qs("shadowing").textContent = day.practice.shadowing;
+
+    const progress = Math.round((state.completedSentenceIds.length / day.sentences.length) * 100);
+    qs("progress").textContent = `今日跟读进度：${state.completedSentenceIds.length}/${day.sentences.length}（${progress}%）`;
+    qs("finished").checked = !!state.finished;
+  }
+
+  document.addEventListener("click", (e) => {
+    const el = e.target;
+    if (!(el instanceof HTMLElement)) return;
+    const act = el.getAttribute("data-act");
+    const i = Number(el.getAttribute("data-i"));
+    const day = getCurrentDay();
+    if (act === "slow") speak(day.sentences[i].es, true);
+    if (act === "normal") speak(day.sentences[i].es, false);
+  });
+
+  document.addEventListener("change", (e) => {
+    const el = e.target;
+    if (!(el instanceof HTMLInputElement)) return;
+    const day = getCurrentDay();
+    const act = el.getAttribute("data-act");
+    const i = Number(el.getAttribute("data-i"));
+    if (act === "done") {
+      window.progressStore.setSentenceDone(day.id, i, el.checked);
+      render();
+    }
+    if (el.id === "finished") {
+      window.progressStore.setFinished(day.id, el.checked);
+    }
+  });
+
+  window.speechSynthesis?.addEventListener?.("voiceschanged", () => render());
+  render();
+})();

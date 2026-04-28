@@ -24,7 +24,17 @@
 
   function loadVoicePrefs() {
     try {
-      return JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
+      const data = JSON.parse(localStorage.getItem(PREF_KEY) || "{}");
+      const migrated = localStorage.getItem("spanish_voice_pref_migrated_v2");
+      if (!migrated) {
+        // one-time migration: reset legacy default to ensure Google español(es-ES) can be auto-selected
+        if (data.voiceName && !/google español/i.test(data.voiceName)) {
+          delete data.voiceName;
+          localStorage.setItem(PREF_KEY, JSON.stringify(data));
+        }
+        localStorage.setItem("spanish_voice_pref_migrated_v2", "1");
+      }
+      return data;
     } catch (e) {
       return {};
     }
@@ -97,12 +107,14 @@
 
     if (current) select.value = current;
     if (!select.value && all[0]) {
-      const preferred = all.find(v => /google español/i.test(v.name) && /es-ES/i.test(v.lang))
+      const preferred = all.find(v => v.name.trim() === "Google español" && /es-ES/i.test(v.lang))
+        || all.find(v => /google español/i.test(v.name) && /es-ES/i.test(v.lang))
         || all.find(v => /google español/i.test(v.name))
         || all.find(v => /es-ES/i.test(v.lang))
         || all.find(v => /es-MX/i.test(v.lang))
         || all[0];
       select.value = preferred.name;
+      saveVoicePrefs();
     }
 
     if (stored.rate && !rate.dataset.inited) rate.value = String(stored.rate);

@@ -114,34 +114,19 @@
     pitchValue.textContent = Number(pitch.value).toFixed(2);
   }
 
-  let practiceIndex = 0;
-  let practiceScore = 0;
-
-  function normalize(s) {
-    return (s || "").trim().toLowerCase().replace(/[。\.]/g, "").replace(/\s+/g, " ");
-  }
-
-  function renderPractice(day) {
-    const items = day.practiceItems || [];
-    const pType = qs("practiceType");
-    const pPrompt = qs("practicePrompt");
-    const pInput = qs("practiceInput");
-    const pFeedback = qs("practiceFeedback");
-    const pProgress = qs("practiceProgress");
-    if (!pType || !pPrompt || !pInput || !pFeedback || !pProgress) return;
-
-    if (!items.length) {
-      pType.textContent = "";
-      pPrompt.textContent = "今日暂无练习题";
+  function renderPracticeSummary(day) {
+    const summary = window.reviewEngine?.getSummary?.(day.id);
+    const box = qs("practiceSummary");
+    const start = qs("startPractice");
+    const boost = qs("startBoost");
+    if (!box || !start || !boost) return;
+    start.href = `practice.html?day=${day.id}&mode=normal`;
+    boost.href = `practice.html?day=${day.id}&mode=boost`;
+    if (!summary) {
+      box.innerHTML = "<strong>今日练习状态：</strong>未开始（常规模式：软15 / 硬20）";
       return;
     }
-
-    const item = items[Math.min(practiceIndex, items.length - 1)];
-    pType.textContent = `题型：${item.type}`;
-    pPrompt.textContent = item.prompt;
-    pInput.value = "";
-    pFeedback.textContent = "";
-    pProgress.textContent = `进度：${Math.min(practiceIndex + 1, items.length)}/${items.length} · 得分：${practiceScore}`;
+    box.innerHTML = `<strong>最近练习：</strong>${summary.score}/${summary.total} · 模式：${summary.mode === 'boost' ? '错题巩固' : '常规'} · 合并 ${summary.mergedCount} · 顺延 ${summary.deferredCount}`;
   }
 
   function render() {
@@ -189,7 +174,7 @@
 
     qs("task").textContent = `口语任务：${day.practice.outputTask}`;
     qs("shadowing").textContent = day.practice.shadowing;
-    renderPractice(day);
+    renderPracticeSummary(day);
 
     const progress = Math.round((state.completedSentenceIds.length / day.sentences.length) * 100);
     qs("progress").textContent = `今日跟读进度：${state.completedSentenceIds.length}/${day.sentences.length}（${progress}%）`;

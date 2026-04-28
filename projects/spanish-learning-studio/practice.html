@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今日练习</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 id="pTitle">今日练习</h1>
+    <div id="pStats" class="muted"></div>
+    <form id="practiceForm"></form>
+    <div class="actions" style="margin-top:12px;">
+      <button id="submitAll" type="submit" form="practiceForm">提交本次练习</button>
+      <a href="index.html"><button type="button" style="background:#475569;">返回学习页</button></a>
+    </div>
+    <section>
+      <h3>结果</h3>
+      <div id="result"></div>
+    </section>
+  </div>
+  <script src="js/siteConfig.js"></script>
+  <script src="js/curriculum.js"></script>
+  <script src="js/reviewEngine.js"></script>
+  <script>
+    const url = new URL(window.location.href);
+    const dayId = url.searchParams.get('day') || window.siteConfig.defaultDayId;
+    const mode = url.searchParams.get('mode') || 'normal';
+    const day = window.curriculum.find(d => d.id === dayId) || window.curriculum[0];
+    document.getElementById('pTitle').textContent = `Day ${day.dayNumber} 练习 · ${mode === 'boost' ? '错题巩固模式' : '常规模式'}`;
+
+    const set = window.reviewEngine.buildPracticeSet(day, mode);
+    document.getElementById('pStats').textContent = `新题 ${set.stats.newCount} · 复习 ${set.stats.reviewCount} · 合并 ${set.mergedCount} · 顺延 ${set.deferredCount} · 最终 ${set.stats.finalCount}（软${set.policy.softCap}/硬${set.policy.hardCap}）`;
+
+    const form = document.getElementById('practiceForm');
+    set.items.forEach((q, i) => {
+      const wrap = document.createElement('section');
+      wrap.className = 'card';
+      wrap.innerHTML = `<div class="muted">${i+1}. ${q.type} ${q.sourceDay === 'review' ? '· 复习' : ''}</div>
+      <div style="font-weight:600;margin:6px 0;">${q.prompt}</div>
+      <input name="q_${i}" type="text" style="width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:8px;" placeholder="请输入答案"/>`;
+      form.appendChild(wrap);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const answers = set.items.map((_, i) => form.elements[`q_${i}`]?.value || '');
+      const graded = window.reviewEngine.gradeAndUpdate(day.id, set, answers);
+      const result = document.getElementById('result');
+      const lines = graded.results.map((r, idx) => `<li>${idx+1}. ${r.ok ? '✅' : '❌'} ${r.ok ? '' : `正确答案：${r.answer}`}</li>`).join('');
+      result.innerHTML = `<div><strong>得分：${graded.score}/${graded.total}</strong></div><ul>${lines}</ul>`;
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

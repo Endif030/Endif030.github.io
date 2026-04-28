@@ -7,19 +7,65 @@
     return window.curriculum.find(d => d.id === dayId) || window.curriculum[0];
   }
 
+  function getVoicePrefs() {
+    const voiceName = qs("voiceSelect")?.value || "";
+    const rate = Number(qs("rate")?.value || 1);
+    const pitch = Number(qs("pitch")?.value || 1);
+    return { voiceName, rate, pitch };
+  }
+
+  function resolveVoice() {
+    const voices = window.speechSynthesis.getVoices() || [];
+    const prefs = getVoicePrefs();
+    if (prefs.voiceName) {
+      const byName = voices.find(v => v.name === prefs.voiceName);
+      if (byName) return byName;
+    }
+    return voices.find(v => v.lang === window.siteConfig.languageCode) || voices.find(v => v.lang === window.siteConfig.fallbackLanguageCode) || voices[0];
+  }
+
   function speak(text, slow) {
     if (!("speechSynthesis" in window)) return;
     const u = new SpeechSynthesisUtterance(text);
-    const voices = window.speechSynthesis.getVoices() || [];
-    const voice = voices.find(v => v.lang === window.siteConfig.languageCode) || voices.find(v => v.lang === window.siteConfig.fallbackLanguageCode);
+    const prefs = getVoicePrefs();
+    const voice = resolveVoice();
     if (voice) u.voice = voice;
     u.lang = voice?.lang || window.siteConfig.languageCode;
-    u.rate = slow ? 0.75 : 1.0;
+    u.rate = slow ? Math.max(0.6, prefs.rate - 0.2) : prefs.rate;
+    u.pitch = prefs.pitch;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(u);
   }
 
+  function renderVoiceControls() {
+    const select = qs("voiceSelect");
+    const rate = qs("rate");
+    const pitch = qs("pitch");
+    const rateValue = qs("rateValue");
+    const pitchValue = qs("pitchValue");
+    if (!select || !rate || !pitch) return;
+
+    const voices = (window.speechSynthesis.getVoices() || []).filter(v => v.lang?.startsWith("es"));
+    const all = voices.length ? voices : (window.speechSynthesis.getVoices() || []);
+
+    const current = select.value;
+    select.innerHTML = "";
+    all.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v.name;
+      opt.textContent = `${v.name} (${v.lang})`;
+      select.appendChild(opt);
+    });
+
+    if (current) select.value = current;
+    if (!select.value && all[0]) select.value = all[0].name;
+
+    rateValue.textContent = Number(rate.value).toFixed(2);
+    pitchValue.textContent = Number(pitch.value).toFixed(2);
+  }
+
   function render() {
+    renderVoiceControls();
     const day = getCurrentDay();
     const state = window.progressStore.getDay(day.id);
     qs("title").textContent = `Day ${day.dayNumber} · ${day.title}`;
@@ -81,18 +127,34 @@
 
   document.addEventListener("change", (e) => {
     const el = e.target;
-    if (!(el instanceof HTMLInputElement)) return;
     const day = getCurrentDay();
-    const act = el.getAttribute("data-act");
-    const i = Number(el.getAttribute("data-i"));
-    if (act === "done") {
-      window.progressStore.setSentenceDone(day.id, i, el.checked);
-      render();
+
+    if (el instanceof HTMLInputElement) {
+      const act = el.getAttribute("data-act");
+      const i = Number(el.getAttribute("data-i"));
+      if (act === "done") {
+        window.progressStore.setSentenceDone(day.id, i, el.checked);
+        render();
+      }
+      if (el.id === "finished") {
+        window.progressStore.setFinished(day.id, el.checked);
+      }
+      if (el.id === "rate" || el.id === "pitch") {
+        renderVoiceControls();
+      }
     }
-    if (el.id === "finished") {
-      window.progressStore.setFinished(day.id, el.checked);
+
+    if (el instanceof HTMLSelectElement && el.id === "voiceSelect") {
+      // no-op: value will be consumed by speak()
     }
   });
+
+  const previewBtn = qs("previewVoice");
+  if (previewBtn) {
+    previewBtn.addEventListener("click", () => {
+      speak("Hola, mucho gusto. Soy tu profesor de español.", false);
+    });
+  }
 
   window.speechSynthesis?.addEventListener?.("voiceschanged", () => render());
   render();

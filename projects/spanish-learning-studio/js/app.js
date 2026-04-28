@@ -114,6 +114,36 @@
     pitchValue.textContent = Number(pitch.value).toFixed(2);
   }
 
+  let practiceIndex = 0;
+  let practiceScore = 0;
+
+  function normalize(s) {
+    return (s || "").trim().toLowerCase().replace(/[。\.]/g, "").replace(/\s+/g, " ");
+  }
+
+  function renderPractice(day) {
+    const items = day.practiceItems || [];
+    const pType = qs("practiceType");
+    const pPrompt = qs("practicePrompt");
+    const pInput = qs("practiceInput");
+    const pFeedback = qs("practiceFeedback");
+    const pProgress = qs("practiceProgress");
+    if (!pType || !pPrompt || !pInput || !pFeedback || !pProgress) return;
+
+    if (!items.length) {
+      pType.textContent = "";
+      pPrompt.textContent = "今日暂无练习题";
+      return;
+    }
+
+    const item = items[Math.min(practiceIndex, items.length - 1)];
+    pType.textContent = `题型：${item.type}`;
+    pPrompt.textContent = item.prompt;
+    pInput.value = "";
+    pFeedback.textContent = "";
+    pProgress.textContent = `进度：${Math.min(practiceIndex + 1, items.length)}/${items.length} · 得分：${practiceScore}`;
+  }
+
   function render() {
     renderVoiceControls();
     const day = getCurrentDay();
@@ -157,8 +187,9 @@
       sentenceWrap.appendChild(row);
     });
 
-    qs("task").textContent = day.practice.outputTask;
+    qs("task").textContent = `口语任务：${day.practice.outputTask}`;
     qs("shadowing").textContent = day.practice.shadowing;
+    renderPractice(day);
 
     const progress = Math.round((state.completedSentenceIds.length / day.sentences.length) * 100);
     qs("progress").textContent = `今日跟读进度：${state.completedSentenceIds.length}/${day.sentences.length}（${progress}%）`;
@@ -213,6 +244,38 @@
   const refreshBtn = qs("refreshVoices");
   if (refreshBtn) {
     refreshBtn.addEventListener("click", () => renderVoiceControls());
+  }
+
+  const submitBtn = qs("practiceSubmit");
+  const nextBtn = qs("practiceNext");
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      const day = getCurrentDay();
+      const items = day.practiceItems || [];
+      if (!items.length) return;
+      const item = items[Math.min(practiceIndex, items.length - 1)];
+      const input = normalize(qs("practiceInput")?.value || "");
+      const answer = normalize(item.answer || "");
+      const ok = input === answer;
+      if (ok) practiceScore += 1;
+      const feedback = qs("practiceFeedback");
+      if (feedback) {
+        feedback.textContent = ok
+          ? `✅ 正确`
+          : `❌ 不对。正确答案：${item.answer}；提示：${item.hint || "继续加油"}`;
+      }
+      const pProgress = qs("practiceProgress");
+      if (pProgress) pProgress.textContent = `进度：${Math.min(practiceIndex + 1, items.length)}/${items.length} · 得分：${practiceScore}`;
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const day = getCurrentDay();
+      const items = day.practiceItems || [];
+      if (!items.length) return;
+      practiceIndex = Math.min(practiceIndex + 1, items.length - 1);
+      renderPractice(day);
+    });
   }
 
   const toggleBtn = qs("toggleSettings");

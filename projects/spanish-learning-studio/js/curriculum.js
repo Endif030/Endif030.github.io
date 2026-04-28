@@ -31,6 +31,16 @@ window.curriculum = [
     practice: {
       shadowing: "每句先慢速1遍，再正常2遍",
       outputTask: "完成两句自我介绍：Hola, me llamo ___. / Soy de ___."
-    }
+    },
+    practiceItems: [
+      { type: "spelling", prompt: "你好", answer: "hola", hint: "开场问候" },
+      { type: "spelling", prompt: "我叫", answer: "me llamo", hint: "自我介绍核心短语" },
+      { type: "spelling", prompt: "很高兴认识你", answer: "mucho gusto", hint: "固定表达" },
+      { type: "cloze", prompt: "Hola, me ____ Roy.", answer: "llamo", hint: "表示“我叫...”" },
+      { type: "cloze", prompt: "Soy ____ China.", answer: "de", hint: "来自某地用 de" },
+      { type: "cloze", prompt: "Mucho ____.", answer: "gusto", hint: "固定搭配" },
+      { type: "reorder", prompt: "请按正确语序排列：Soy / de / China", answer: "Soy de China", hint: "主语+介词+地名" },
+      { type: "translate", prompt: "请翻译：你好，我叫 Roy。", answer: "Hola, me llamo Roy", hint: "关键词：hola + me llamo + Roy" }
+    ]
   }
 ];

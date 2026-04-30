@@ -34,6 +34,28 @@
     return { rate, pitch };
   }
 
+  function getVoiceDiagSummary() {
+    const supported = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+    const voices = supported ? (window.speechSynthesis.getVoices() || []) : [];
+    const selected = supported ? resolveVoice() : null;
+    return {
+      supported,
+      voiceCount: voices.length,
+      selectedName: selected?.name || "无",
+      selectedLang: selected?.lang || "无"
+    };
+  }
+
+  function updateVoiceDiag(extraText) {
+    const diagEl = qs("voiceDiag");
+    if (!diagEl) return;
+    const s = getVoiceDiagSummary();
+    const base = s.supported
+      ? `支持Web Speech，voices=${s.voiceCount}，当前=${s.selectedName} (${s.selectedLang})`
+      : "当前浏览器不支持 Web Speech（speechSynthesis）";
+    diagEl.textContent = extraText ? `${base} · ${extraText}` : base;
+  }
+
   function resolveVoice() {
     const voices = window.speechSynthesis.getVoices() || [];
     return voices.find(v => v.name.trim() === "Google español" && /es-ES/i.test(v.lang))
@@ -43,8 +65,41 @@
       || voices[0];
   }
 
-  function speak(text, slow) {
-    if (!("speechSynthesis" in window)) return;
+  function ensureVoicesReady() {
+    return new Promise((resolve) => {
+      if (!("speechSynthesis" in window)) {
+        resolve(false);
+        return;
+      }
+      const now = window.speechSynthesis.getVoices() || [];
+      if (now.length > 0) {
+        resolve(true);
+        return;
+      }
+      let done = false;
+      const timeout = setTimeout(() => {
+        if (done) return;
+        done = true;
+        resolve((window.speechSynthesis.getVoices() || []).length > 0);
+      }, 1500);
+      const handler = () => {
+        if (done) return;
+        done = true;
+        clearTimeout(timeout);
+        resolve((window.speechSynthesis.getVoices() || []).length > 0);
+      };
+      window.speechSynthesis.addEventListener?.("voiceschanged", handler, { once: true });
+    });
+  }
+
+  async function speak(text, slow) {
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+      updateVoiceDiag("播放失败：浏览器不支持语音API");
+      return;
+    }
+
+    await ensureVoicesReady();
+
     const u = new SpeechSynthesisUtterance(text);
     const prefs = getVoicePrefs();
     const voice = resolveVoice();
@@ -52,8 +107,22 @@
     u.lang = voice?.lang || window.siteConfig.languageCode;
     u.rate = slow ? Math.max(0.6, prefs.rate - 0.2) : prefs.rate;
     u.pitch = prefs.pitch;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(u);
+
+    u.onerror = (ev) => {
+      updateVoiceDiag(`播放失败：${ev.error || "unknown"}`);
+      console.error("[voice] speak error:", ev);
+    };
+    u.onend = () => updateVoiceDiag("播放成功");
+
+    try {
+      window.speechSynthesis.resume();
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+      updateVoiceDiag("已发起播放请求");
+    } catch (err) {
+      updateVoiceDiag(`播放异常：${err?.message || err}`);
+      console.error("[voice] speak exception:", err);
+    }
   }
 
   function renderVoiceControls() {
@@ -63,6 +132,8 @@
     const pitchValue = qs("pitchValue");
     const voiceHint = qs("voiceHint");
     if (!rate || !pitch) return;
+
+    updateVoiceDiag();
 
     const allVoices = window.speechSynthesis.getVoices() || [];
     const locked = allVoices.find(v => v.name.trim() === "Google español" && /es-ES/i.test(v.lang));
@@ -187,6 +258,21 @@
   if (previewBtn) {
     previewBtn.addEventListener("click", () => {
       speak("Hola, mucho gusto. Soy tu profesor de español.", false);
+    });
+  }
+
+  const selfTestBtn = qs("voiceSelfTest");
+  if (selfTestBtn) {
+    selfTestBtn.addEventListener("click", async () => {
+      const ok = await ensureVoicesReady();
+      if (!ok) {
+        updateVoiceDiag("自检失败：voices 为空，请检查系统语音包或浏览器语音服务");
+        return;
+      }
+      const voices = window.speechSynthesis.getVoices() || [];
+      const sample = voices.slice(0, 6).map(v => `${v.name}(${v.lang})`).join(" | ");
+      updateVoiceDiag(`自检通过：已加载 ${voices.length} 个 voice；示例：${sample}`);
+      speak("Prueba de audio. Hola Roy, ¿me escuchas?", false);
     });
   }
 

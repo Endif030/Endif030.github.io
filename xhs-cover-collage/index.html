@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>XHS Cover Collage Studio</title>
+    <meta
+      name="description"
+      content="用于生成小红书封面配图的多图拼接工具，支持 16:9 / 4:3、多模板、斜切拼图、图片缩放旋转与导出。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Xiaohongshu Cover Tool</p>
+          <h1>拼图封面工作台</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="resetProjectBtn" class="btn btn-ghost">清空项目</button>
+          <button id="exportJpgBtn" class="btn btn-secondary">导出 JPG</button>
+          <button id="exportPngBtn" class="btn btn-primary">导出 PNG</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="panel panel-left">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2>图片</h2>
+                <p>上传 2-12 张图片，点击缩略图可指定到当前选中区域。</p>
+              </div>
+              <label class="btn btn-primary upload-btn">
+                <input id="fileInput" type="file" accept="image/*" multiple />
+                上传图片
+              </label>
+            </div>
+            <div id="dropzone" class="dropzone">
+              <p>支持拖拽上传</p>
+              <span>JPG / PNG / WebP / GIF</span>
+            </div>
+            <div id="imageList" class="image-list"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-header compact">
+              <div>
+                <h2>画布</h2>
+                <p>小红书封面比例预设与导出设置。</p>
+              </div>
+            </div>
+            <div class="preset-group" id="presetGroup"></div>
+            <div class="field-grid">
+              <label class="field">
+                <span>背景色</span>
+                <input id="backgroundColor" type="color" value="#111827" />
+              </label>
+              <label class="field">
+                <span>导出尺寸</span>
+                <select id="exportScaleSelect">
+                  <option value="1">1x</option>
+                  <option value="2" selected>2x</option>
+                  <option value="3">3x</option>
+                </select>
+              </label>
+            </div>
+            <div class="field-grid line-style-grid">
+              <label class="field">
+                <span>分割线颜色</span>
+                <input id="splitLineColor" type="color" value="#ff4d73" />
+              </label>
+              <label class="field">
+                <span>分割线粗细</span>
+                <input id="splitLineWidth" type="range" min="1" max="10" value="2" />
+                <strong id="splitLineWidthValue">2px</strong>
+              </label>
+            </div>
+            <label class="check-field">
+              <input id="splitLineToggle" type="checkbox" checked />
+              <span>显示分割线</span>
+            </label>
+          </section>
+        </aside>
+
+        <section class="stage-column">
+          <div class="stage-card">
+            <div class="stage-header">
+              <div>
+                <h2>实时预览</h2>
+                <p id="stageMeta">请先上传图片并选择模板</p>
+              </div>
+              <div class="stage-tools">
+                <button id="fitImageBtn" class="btn btn-ghost">铺满当前区域</button>
+                <button id="containImageBtn" class="btn btn-ghost">完整显示</button>
+                <button id="resetSlotBtn" class="btn btn-ghost">重置当前图片</button>
+              </div>
+            </div>
+            <div class="canvas-stage">
+              <div id="canvasWrap" class="canvas-wrap" style="--canvas-ratio: 16 / 9">
+                <canvas id="editorCanvas" width="1280" height="720"></canvas>
+              </div>
+            </div>
+            <div class="tip-row">
+              <span>拖拽：移动图片</span>
+              <span>滚轮 / 双指：缩放</span>
+              <span>右侧滑杆：旋转</span>
+            </div>
+            <p id="snapHint" class="snap-hint">吸附辅助已开启：靠近边缘、中心或铺满/完整显示时会自动贴合。</p>
+            <p id="exportHint" class="export-hint"></p>
+            <div id="exportFallback" class="export-fallback" hidden>
+              <span>自动下载可能被当前环境拦截，可直接打开导出图片：</span>
+              <a id="exportFallbackLink" href="#" target="_blank" rel="noopener noreferrer">打开导出结果</a>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel panel-right">
+          <section class="card">
+            <div class="card-header compact">
+              <div>
+                <h2>模板</h2>
+                <p>基础拼图 + 创意斜切（缩略图与真实模板同步）</p>
+              </div>
+            </div>
+            <div id="templateGroups" class="template-groups"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-header compact">
+              <div>
+                <h2>当前区域</h2>
+                <p id="selectedSlotMeta">选择一个区域后可调整。</p>
+              </div>
+            </div>
+            <div class="selected-preview">
+              <div id="selectedSlotBadge" class="slot-badge">未选中</div>
+            </div>
+            <div class="field-grid single">
+              <label class="field">
+                <span>旋转角度</span>
+                <input id="rotationRange" type="range" min="-180" max="180" value="0" />
+                <strong id="rotationValue">0°</strong>
+              </label>
+              <label class="field">
+                <span>缩放微调</span>
+                <input id="scaleRange" type="range" min="50" max="250" value="100" />
+                <strong id="scaleValue">100%</strong>
+              </label>
+            </div>
+            <div class="field-grid single">
+              <label class="field">
+                <span>替换当前区域图片</span>
+                <select id="slotImageSelect"></select>
+              </label>
+            </div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./diagonal-template-rules.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

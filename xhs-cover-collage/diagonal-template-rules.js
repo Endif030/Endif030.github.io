@@ -1,0 +1,66 @@
+window.DIAGONAL_TEMPLATE_RULES = [
+  {
+    id: 'radial-3',
+    name: '3图中心斜切',
+    count: 3,
+    mode: 'explicit',
+    center: { x: 0.5, y: 0.5 },
+    polygons: [
+      [
+        { x: 0, y: 0.211325 },
+        { x: 0, y: 0 },
+        { x: 1, y: 0 },
+        { x: 1, y: 0.211325 },
+        { x: 0.5, y: 0.5 },
+      ],
+      [
+        { x: 0, y: 0.211325 },
+        { x: 0.5, y: 0.5 },
+        { x: 0.5, y: 1 },
+        { x: 0, y: 1 },
+      ],
+      [
+        { x: 1, y: 0.211325 },
+        { x: 1, y: 1 },
+        { x: 0.5, y: 1 },
+        { x: 0.5, y: 0.5 },
+      ],
+    ],
+  },
+  {
+    id: 'radial-4',
+    name: '4图交叉斜切',
+    count: 4,
+    mode: 'even-cross',
+    center: { x: 0.5, y: 0.5 },
+    boundaryPoints: [
+      { x: 1, y: 0 },
+      { x: 1, y: 1 },
+      { x: 0, y: 1 },
+      { x: 0, y: 0 },
+    ],
+  },
+  {
+    id: 'radial-5',
+    name: '5图放射斜切',
+    count: 5,
+    mode: 'odd-radial',
+    center: { x: 0.5, y: 0.5 },
+    angles: [90, 18, -54, -126, 162],
+  },
+  {
+    id: 'radial-6',
+    name: '6图放射斜切',
+    count: 6,
+    mode: 'even-cross',
+    center: { x: 0.5, y: 0.5 },
+    boundaryPoints: [
+      { x: 1, y: 0 },
+      { x: 1, y: 0.5 },
+      { x: 1, y: 1 },
+      { x: 0, y: 1 },
+      { x: 0, y: 0.5 },
+      { x: 0, y: 0 },
+    ],
+  },
+];

@@ -512,3 +512,256 @@ button {
   opacity: 0.72;
   pointer-events: none;
 }
+
+/* Mobile workflow layout: images → templates → preview → canvas settings → selected slot */
+@media (max-width: 760px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .panel-left,
+  .panel-right {
+    display: contents;
+  }
+
+  .image-panel {
+    order: 1;
+  }
+
+  .template-panel {
+    order: 2;
+  }
+
+  .preview-panel {
+    order: 3;
+    width: 100%;
+  }
+
+  .canvas-panel {
+    order: 4;
+  }
+
+  .selected-panel {
+    order: 5;
+  }
+
+  .card,
+  .stage-card {
+    border-radius: 18px;
+    padding: 14px;
+  }
+
+  .card-header,
+  .stage-header {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .card h2,
+  .stage-header h2 {
+    font-size: 22px;
+  }
+
+  .card-header p,
+  .stage-header p,
+  .tip-row,
+  .field span,
+  .dropzone span,
+  .dropzone p,
+  #selectedSlotMeta,
+  #stageMeta {
+    font-size: 12px;
+  }
+
+  .topbar {
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .topbar h1 {
+    font-size: 30px;
+  }
+
+  .topbar-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .topbar-actions #resetProjectBtn {
+    grid-column: 1 / -1;
+  }
+
+  .btn {
+    min-height: 42px;
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+
+  .stage-tools {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stage-tools .btn {
+    width: auto;
+    min-height: 38px;
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .canvas-stage {
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .canvas-wrap {
+    border-radius: 16px;
+  }
+
+  .tip-row {
+    gap: 8px 12px;
+  }
+
+  /* Compact image strip */
+  .image-panel .dropzone {
+    display: none;
+  }
+
+  .image-panel .card-header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .image-panel .upload-btn {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .image-list {
+    display: flex;
+    gap: 10px;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 2px 8px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .image-card {
+    flex: 0 0 136px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 8px;
+    scroll-snap-align: start;
+  }
+
+  .image-card img {
+    height: 92px;
+    border-radius: 10px;
+  }
+
+  .image-card h3 {
+    font-size: 12px;
+    line-height: 1.25;
+    max-height: 32px;
+    overflow: hidden;
+  }
+
+  .image-card p {
+    display: none;
+  }
+
+  .image-actions {
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .image-actions [data-move-image-id] {
+    display: none;
+  }
+
+  .icon-btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  /* Compact horizontal template selector */
+  .template-groups {
+    gap: 10px;
+  }
+
+  .template-group-title {
+    margin: 8px 0 6px;
+    font-size: 12px;
+  }
+
+  .template-group-list {
+    display: flex;
+    grid-template-columns: none;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 2px 8px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .template-card {
+    flex: 0 0 124px;
+    padding: 8px;
+    border-radius: 14px;
+    scroll-snap-align: start;
+  }
+
+  .template-preview {
+    height: 118px;
+    aspect-ratio: auto;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    background-size: cover;
+  }
+
+  .template-card h3 {
+    font-size: 12px;
+    line-height: 1.25;
+    min-height: 30px;
+    margin-bottom: 4px;
+  }
+
+  .template-card p {
+    font-size: 11px;
+  }
+
+  /* Bottom settings density */
+  .preset-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .preset-chip {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .field-grid,
+  .field-grid.single {
+    gap: 10px;
+  }
+
+  .field input[type='range'],
+  .field select,
+  .field input[type='color'] {
+    min-height: 40px;
+    padding: 8px 10px;
+  }
+
+  .selected-preview {
+    margin-bottom: 10px;
+  }
+}

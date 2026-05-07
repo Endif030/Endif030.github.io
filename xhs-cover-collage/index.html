@@ -8,7 +8,7 @@
       name="description"
       content="用于生成小红书封面配图的多图拼接工具，支持 16:9 / 4:3、多模板、斜切拼图、图片缩放旋转与导出。"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=mobile-layout-1" />
   </head>
   <body>
     <div class="app-shell">
@@ -26,7 +26,7 @@
 
       <main class="layout">
         <aside class="panel panel-left">
-          <section class="card">
+          <section class="card image-panel">
             <div class="card-header">
               <div>
                 <h2>图片</h2>
@@ -44,7 +44,7 @@
             <div id="imageList" class="image-list"></div>
           </section>
 
-          <section class="card">
+          <section class="card canvas-panel">
             <div class="card-header compact">
               <div>
                 <h2>画布</h2>
@@ -84,7 +84,7 @@
           </section>
         </aside>
 
-        <section class="stage-column">
+        <section class="stage-column preview-panel">
           <div class="stage-card">
             <div class="stage-header">
               <div>
@@ -117,7 +117,7 @@
         </section>
 
         <aside class="panel panel-right">
-          <section class="card">
+          <section class="card template-panel">
             <div class="card-header compact">
               <div>
                 <h2>模板</h2>
@@ -127,7 +127,7 @@
             <div id="templateGroups" class="template-groups"></div>
           </section>
 
-          <section class="card">
+          <section class="card selected-panel">
             <div class="card-header compact">
               <div>
                 <h2>当前区域</h2>
@@ -160,7 +160,7 @@
       </main>
     </div>
 
-    <script src="./diagonal-template-rules.js"></script>
-    <script src="./app.js"></script>
+    <script src="./diagonal-template-rules.js?v=mobile-layout-1"></script>
+    <script src="./app.js?v=mobile-layout-1"></script>
   </body>
 </html>
